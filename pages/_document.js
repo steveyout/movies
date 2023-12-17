@@ -35,7 +35,7 @@ export default class MyDocument extends Document {
             rel="stylesheet"
           />
 
-          <meta name="description" content="Start streaming games and earn with youplex" />
+          <meta name="description" content="Watch and stream movies for free" />
           <meta name="keywords" content="Youplex,earn,games,live stream,instant withdrawals,movies,free movies,youtube,free series,netflix,hulu,onstream" />
           <meta name="author" content="Youplex" />
           <meta name="subject" content="Youplex" />
@@ -57,7 +57,7 @@ export default class MyDocument extends Document {
             name="pagename"
             content="Youplex,earn,games,live stream,instant withdrawals,movies,free movies,youtube,free series,netflix,hulu,onstream"
           />
-          <meta name="category" content="Game Streaming" />
+          <meta name="category" content="Movie Streaming" />
           <meta name="coverage" content="Worldwide" />
           <meta name="distribution" content="Global" />
           <meta name="rating" content="General" />
