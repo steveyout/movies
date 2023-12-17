@@ -47,7 +47,7 @@ export default class MyDocument extends Document {
           <meta name="summary" content="" />
           <meta name="Classification" content="Business" />
           <meta name="author" content="Youplex, support@youplex.live" />
-          <meta name="designer" content="Youplext" />
+          <meta name="designer" content="Youplex" />
           <meta name="reply-to" content="support@youplex.live" />
           <meta name="owner" content="" />
           <meta name="url" content="http://youplex.live" />
