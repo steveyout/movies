@@ -2,15 +2,15 @@
 import { styled } from '@mui/material/styles';
 import { Box, Button, Stack, Container, Typography, InputAdornment } from '@mui/material';
 // hooks
-import useCountdown from '../hooks/useCountdown';
+import useCountdown from '@/hooks/useCountdown';
 // layouts
-import Layout from '../layouts';
+import Layout from '@/layouts';
 // components
-import Page from '../components/Page';
-import InputStyle from '../components/InputStyle';
-import SocialsButton from '../components/SocialsButton';
+import Page from '@/components/Page';
+import InputStyle from '@/components/InputStyle';
+import SocialsButton from '@/components/SocialsButton';
 // assets
-import { ComingSoonIllustration } from '../assets';
+import { ComingSoonIllustration } from '@/assets';
 
 // ----------------------------------------------------------------------
 

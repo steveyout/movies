@@ -5,12 +5,12 @@ import NextLink from 'next/link';
 import { styled } from '@mui/material/styles';
 import { Box, Button, Typography, Container } from '@mui/material';
 // layouts
-import Layout from '../layouts';
+import Layout from '@/layouts';
 // components
-import Page from '../components/Page';
-import { MotionContainer, varBounce } from '../components/animate';
+import Page from '@/components/Page';
+import { MotionContainer, varBounce } from '@/components/animate';
 // assets
-import { PageNotFoundIllustration } from '../assets';
+import { PageNotFoundIllustration } from '@/assets';
 
 // ----------------------------------------------------------------------
 

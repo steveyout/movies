@@ -106,25 +106,9 @@ export default function MenuMobile({ isOffset, isHome, navConfig }) {
           >
             <DocIllustration sx={{ width: 1 }} />
 
-            <NextLink href={PATH_AUTH.register} passHref>
-              <Button
-                href={PATH_AUTH.login}
-                startIcon={<Iconify icon="ph:sign-in-light" />}
-                variant="outlined"
-                color={'primary'}
-                sx={{ mb: 2,mt:2 }}
-              >
-                Login
-              </Button>
-            </NextLink>
-
-            <NextLink href={PATH_AUTH.register} passHref>
-              <Button
-                startIcon={<Iconify icon="mdi:user-add-outline" />}
-                variant="contained"
-                color={'primary'}
-              >
-                Sign Up
+            <NextLink href={'https://t.me/youplexannouncments'} passHref>
+              <Button variant="contained" startIcon={<Iconify icon={'la:telegram'} />}>
+                Telegram
               </Button>
             </NextLink>
           </Stack>

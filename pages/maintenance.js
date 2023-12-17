@@ -4,11 +4,11 @@ import NextLink from 'next/link';
 import { styled } from '@mui/material/styles';
 import { Button, Typography, Container } from '@mui/material';
 // layouts
-import Layout from '../layouts';
+import Layout from '@/layouts';
 // components
-import Page from '../components/Page';
+import Page from '@/components/Page';
 //
-import { MaintenanceIllustration } from '../assets';
+import { MaintenanceIllustration } from '@/assets';
 
 // ----------------------------------------------------------------------
 

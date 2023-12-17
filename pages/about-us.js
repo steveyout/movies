@@ -2,11 +2,11 @@
 import { styled } from '@mui/material/styles';
 import { Divider } from '@mui/material';
 // layouts
-import Layout from '../layouts';
+import Layout from '@/layouts';
 // components
-import Page from '../components/Page';
+import Page from '@/components/Page';
 // sections
-import { AboutHero, AboutWhat, AboutTeam, AboutVision, AboutTestimonials } from '../sections/about';
+import { AboutHero, AboutWhat, AboutTeam, AboutVision, AboutTestimonials } from '@/sections/about';
 
 // ----------------------------------------------------------------------
 
