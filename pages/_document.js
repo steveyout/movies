@@ -80,7 +80,7 @@ export default class MyDocument extends Document {
           <meta name="og:url" content="http://youplex.live" />
           <meta name="og:image" content="http://youplex.live" />
           <meta name="og:site_name" content="Youplex" />
-          <meta name="og:description" content="Stream and earn games with Youplex" />
+          <meta name="og:description" content="Watch and stream movies for free" />
 
           <meta name="fb:page_id" content="43929265776" />
           <meta name="application-name" content="Youplex" />
