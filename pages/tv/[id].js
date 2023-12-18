@@ -56,7 +56,7 @@ export default function BlogPost({ data }) {
   const getMovie = useCallback(async () => {
     try {
       if (!movie) {
-        const response = await axios.get(`/api/movie/${id}`);
+        const response = await axios.get(`/api/series/${id}`);
 
         if (isMountedRef.current) {
           setMovie(response.data);
@@ -78,18 +78,18 @@ export default function BlogPost({ data }) {
       title={movie ? sentenceCase(movie.title) : sentenceCase(id)}
       meta={
         <>
-          <meta name="viewport" content="initial-scale=1, width=device-width" />
-          <meta name="viewport" content="initial-scale=1, width=device-width" />
+          <meta name="description" content={movie?movie.description:id} />
+          <meta name="keywords" content={movie ? `${movie.tags} ${movie.genres} ${movie.casts}`:''} />
         </>
       }
     >
       <RootStyle>
         <Container maxWidth={themeStretch ? false : 'lg'}>
           <HeaderBreadcrumbs
-            heading="Video Details"
+            heading="Tv series"
             links={[
-              { name: 'Home', href: PATH_PAGE.root },
-              { name: 'Movies', href: PATH_PAGE.movies },
+              { name: 'Home', href: '/' },
+              { name: 'Tv', href: PATH_PAGE.series },
               { name: movie ? sentenceCase(movie.title) : sentenceCase(id) },
             ]}
           />
@@ -137,10 +137,10 @@ export async function getServerSideProps(context) {
   try {
     const id = context.params.id;
     const flixhq = new MOVIES.FlixHQ();
-    const movie = await flixhq.fetchMediaInfo(`movie/${id}`);
+    const movie = await flixhq.fetchMediaInfo(`tv/${id}`);
     const sources = await flixhq.fetchEpisodeSources(
       movie.episodes[0].id,
-      `movie/${id}`,
+      `tv/${id}`,
       'upcloud'
     );
     movie.sources = sources.sources;

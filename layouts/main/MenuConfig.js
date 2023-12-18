@@ -21,7 +21,7 @@ const menuConfig = [
   {
     title: 'Series',
     icon: <Iconify icon={'material-symbols:play-circle-outline-rounded'} {...ICON_SIZE} />,
-    path: PATH_PAGE.videos,
+    path: PATH_PAGE.series,
   },
   {
     title: 'Asian',

@@ -14,7 +14,7 @@ import useIsMountedRef from '@/hooks/useIsMountedRef';
 // utils
 import axios from '@/utils/axios';
 // routes
-import {PATH_DASHBOARD, PATH_PAGE} from '@/routes/paths';
+import { PATH_PAGE} from '@/routes/paths';
 // components
 import Image from '@/components/Image';
 import Iconify from '@/components/Iconify';
@@ -30,9 +30,7 @@ const PopperStyle = styled((props) => <Popper placement="bottom-start" {...props
 // ----------------------------------------------------------------------
 
 export default function VideoPostsSearch() {
-  const { push } = useRouter();
-
-  const isMountedRef = useIsMountedRef();
+  const { push,pathname } = useRouter();
 
   const [searchQuery, setSearchQuery] = useState('');
 
@@ -88,7 +86,7 @@ export default function VideoPostsSearch() {
         <InputStyle
           {...params}
           stretchStart={200}
-          placeholder="Search movies..."
+          placeholder={pathname.includes('tv')?'Search series...':'Search movies...'}
           onKeyUp={handleKeyUp}
           InputProps={{
             ...params.InputProps,
