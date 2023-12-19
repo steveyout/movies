@@ -5,7 +5,7 @@ module.exports = {
   exclude: ['/server-sitemap.xml'],
   robotsTxtOptions: {
     additionalSitemaps: [
-      `${process.env.SITE_URL}/server-sitemap.xml`, // <==== Add here
+      `https://movies.youplex.live/server-sitemap.xml`, // <==== Add here
     ],
   },
 };
