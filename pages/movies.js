@@ -26,6 +26,7 @@ import EmptyContent from '@/components/EmptyContent';
 import InfiniteScroll from 'react-infinite-scroller';
 import { varFade } from '@/components/animate';
 import { MOVIES } from '@consumet/extensions';
+import { useSnackbar } from 'notistack';
 // ----------------------------------------------------------------------
 
 const SORT_OPTIONS = [
@@ -73,6 +74,7 @@ export default function Videos({ data }) {
   const [loading, setLoading] = useState(true);
   const [url, setUrl] = useState('');
   let [page, setPage] = useState(1);
+  const { enqueueSnackbar } = useSnackbar();
 
   const [filters, setFilters] = useState('latest');
 
@@ -93,7 +95,7 @@ export default function Videos({ data }) {
         setLoading(false);
       }
     } catch (error) {
-      console.error(error);
+      enqueueSnackbar('Oops! Something went wrong,Please try again later', { variant: 'error' });
     }
   }, [isMountedRef]);
 

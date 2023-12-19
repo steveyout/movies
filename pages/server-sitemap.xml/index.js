@@ -1,4 +1,4 @@
-import { getServerSideSitemapLegacy } from 'next-sitemap'
+import { getServerSideSitemap } from 'next-sitemap'
 import { PATH_PAGE } from '@/routes/paths';
 import { MOVIES } from '@consumet/extensions';
 export const getServerSideProps = async (ctx) => {
@@ -16,7 +16,7 @@ export const getServerSideProps = async (ctx) => {
     },)
   })
 
-  return getServerSideSitemapLegacy(ctx, fields)
+  return getServerSideSitemap(ctx, fields)
 }
 
 // Default export to prevent next.js errors

@@ -24,6 +24,7 @@ import { SkeletonPost } from '@/components/skeleton';
 import { VideoPostHero, VideoPostTags, VideoPostRecent } from '@/sections/movies';
 import Iconify from '@/components/Iconify';
 import { MOVIES } from '@consumet/extensions';
+import { useSnackbar } from 'notistack';
 
 const RootStyle = styled('div')(({ theme }) => ({
   paddingTop: theme.spacing(8),
@@ -52,6 +53,7 @@ export default function BlogPost({ data }) {
   const [loading, setLoading] = useState(true);
 
   const [error, setError] = useState(null);
+  const { enqueueSnackbar } = useSnackbar();
 
   const getMovie = useCallback(async () => {
     try {
@@ -66,7 +68,7 @@ export default function BlogPost({ data }) {
         setLoading(false);
       }
     } catch (error) {
-      console.error(error);
+      enqueueSnackbar('Oops! Something went wrong,Please try again later', { variant: 'error' });
     }
   }, [isMountedRef]);
 
@@ -115,7 +117,7 @@ export default function BlogPost({ data }) {
                   </Box>
                 </Stack>
                 <Box>
-                  <VideoPostTags post={movie} />
+                  <VideoPostTags post={movie} setMovie={setMovie}/>
                 </Box>
                 {movie.description}
               </Box>

@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
 // @mui
-import { Box, Chip, Typography } from '@mui/material';
-import {PATH_PAGE} from "@/routes/paths";
+import { Box, Chip, Typography,LinearProgress } from '@mui/material';
+import { useSnackbar } from 'notistack';
 // next
 import { useRouter } from 'next/router';
 import useIsMountedRef from "@/hooks/useIsMountedRef";
@@ -15,18 +15,19 @@ VideoPostTags.propTypes = {
   post: PropTypes.object.isRequired,
 };
 
-export default function VideoPostTags({ post }) {
+export default function VideoPostTags({ post,setMovie }) {
     const { query } = useRouter();
-    const isMountedRef = useIsMountedRef();
-    const[source,setSource]=useState([]);
+    const[active,setActive]=useState(0);
+    const[loading,setLoading]=useState(false)
+  const { enqueueSnackbar } = useSnackbar();
 
     const { id } = query;
-  let { tags,episodes,type } = post;
-    const { push } = useRouter();
+    let { tags,episodes,type} = post;
 
-    const handleChangeEpisode = async (episodeId) => {
+    const handleChangeEpisode = async (episodeId,index) => {
         try {
             if (id&&episodeId) {
+              setLoading(true)
                 const response = await axios.get(`/api/episode/${id}`,{
                     params: {
                       id: id,
@@ -34,13 +35,17 @@ export default function VideoPostTags({ post }) {
                     },
                 });
 
-                if (isMountedRef.current) {
-                    setSource(response.data);
-                    //push(PATH_PAGE.tv(title));
-                }
+                  setMovie((prevState) => ({
+                    ...prevState,
+                    sources: response.data.sources,
+                    subtitles:response.data.subtitles
+                  }));
+                  setActive(index)
+              setLoading(false)
             }
         } catch (error) {
-            console.error(error);
+          enqueueSnackbar('Oops! Something went wrong', { variant: 'error' });
+          setLoading(false)
         }
     };
   return (
@@ -56,9 +61,21 @@ export default function VideoPostTags({ post }) {
     <Box sx={{ py: 3 }}>
         <Typography variant="h6" sx={{ mb: 5 }}>
             Episodes
+          {loading&&(<LinearProgress/>)}
         </Typography>
         {episodes &&
-            episodes.map((episode) => <Chip key={episode.id} label={episode.title} sx={{ m: 0.5 }} color={'primary'} onClick={(e)=>handleChangeEpisode(episode.id)}/>)}
+            episodes.filter((v,i,a)=>a.findIndex(v2=>['season'].every(k=>v2[k] ===v[k]))===i).map((e,index) =>(
+              <>
+              <Typography variant="subtitle1" sx={{ mb: 2 }}>
+                Season {e.season}
+              </Typography>
+                {episodes.map((episode,index) =>
+                  episode.season===e.season&&(
+              <Chip key={episode.id} label={episode.title} sx={{ m: 0.5 }} color={active===index?'primary':'default'}
+                    onClick={(e)=>handleChangeEpisode(episode.id,index)}/>
+                    ))}
+              </>
+            ))}
     </Box>)}
     </>
   );

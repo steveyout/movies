@@ -60,7 +60,7 @@ export default function VideoPostsSearch() {
     },1000)
 
   const handleClick = (slug) => {
-    push(PATH_PAGE.movie(slug.includes('movie')?slug.split('movie/')[1]:slug));
+    push(slug.includes('movie')?PATH_PAGE.movie(slug.split('movie/')[1]):PATH_PAGE.tv(slug.split('tv/')[1]));
   };
 
   const handleKeyUp = (event) => {
