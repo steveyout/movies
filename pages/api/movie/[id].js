@@ -12,6 +12,7 @@ export default async function handler(req, res) {
       'upcloud'
     );
     movie.sources = sources.sources;
+    movie.subtitles=sources.subtitles
     res.status(200).json(movie);
   } catch (error) {
     console.error('failed to load data');

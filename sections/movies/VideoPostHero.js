@@ -26,7 +26,7 @@ import { fDate } from '@/utils/formatTime';
 import Image from '@/components/Image';
 import Iconify from '@/components/Iconify';
 import { useRef } from 'react';
-import { MediaProvider, MediaPlayer, Time, useMediaStore, useMediaRemote } from '@vidstack/react';
+import { MediaProvider, MediaPlayer, Time, useMediaStore, useMediaRemote,Track,Captions } from '@vidstack/react';
 
 import PlayArrowRoundedIcon from '@mui/icons-material/PlayArrowRounded';
 import SettingsOutlinedIcon from '@mui/icons-material/SettingsOutlined';
@@ -102,7 +102,22 @@ const Controls = styled('div')(({ theme }) => ({
   [theme.breakpoints.up('lg')]: {},
 }));
 
-//----------------------------------------------------
+//-----------------------------------------------------------------------
+/////////////subtitles
+const Subtitles = styled('div')(({ theme }) => ({
+  bottom: 0,
+  zIndex: 10,
+  width: '100%',
+  position: 'absolute',
+  textAlign:'center',
+  padding: theme.spacing(1),
+  paddingBottom: theme.spacing(10),
+  justifyContent: 'space-between',
+  [theme.breakpoints.up('sm')]: {
+    alignItems: 'center',
+  },
+  [theme.breakpoints.up('lg')]: {},
+}));
 // ----------------------------------------------------------------------
 //overlay
 const rotate = keyframes`
@@ -242,6 +257,18 @@ export default function VideoPostHero({ post }) {
     variant: 'popover',
     popupId: 'volume',
   });
+
+
+  //////////////change subtitles
+  const handleChangeCc = (index) => {
+    if (index===-1){
+      remote.disableCaptions();
+      setAnchorEl1(null);
+      return
+    }
+    remote.changeTextTrackMode(index, 'showing');
+    setAnchorEl1(null);
+  };
   const {
     id,
     title,
@@ -259,6 +286,7 @@ export default function VideoPostHero({ post }) {
     recommendations,
     episodes,
     sources,
+    subtitles
   } = post;
   const stream = sources.find((source) => source.quality === '720');
 
@@ -291,16 +319,23 @@ export default function VideoPostHero({ post }) {
         }}
       >
         <MediaPlayer
-          style={{ width: '100%' }}
           ref={player}
           src={`${stream.url}`}
           poster={`${cover}`}
           aspectRatio={'16/9'}
-          debug={true}
+          crossorigin={true}
+          className={'media'}
         >
-          <MediaProvider />
+          <MediaProvider>
+            {subtitles&&subtitles.map((subtitle,index)=>(
+              <Track id={index} src={subtitle.url} kind="subtitles" label={subtitle.lang} lang="en-US" default={!!subtitle.lang.includes('English')} />
+            ))}
+          </MediaProvider>
+          <Subtitles>
+            <Captions className="vds-captions" />
+          </Subtitles>
           {started && (
-            <Controls className={'media-controls'}>
+            <Controls className="media-controls">
               <Stack spacing={2} direction="row" sx={{ mb: -1 }} alignItems="center">
                 <Slider
                   aria-label="Time indicator"
@@ -500,8 +535,10 @@ export default function VideoPostHero({ post }) {
                       },
                     }}
                   >
-                    <MenuItem onClick={handleCloseCc}>English</MenuItem>
-                    <MenuItem onClick={handleCloseCc}>French</MenuItem>
+                    <MenuItem  key={'off'} onClick={(e) => handleChangeCc(-1)}>Off</MenuItem>
+                    {subtitles&&subtitles.map((subtitle,index)=>(
+                    <MenuItem  key={index} onClick={(e) => handleChangeCc(index)}>{subtitle.lang}</MenuItem>
+                  ))}
                   </Menu>
                 </Stack>
               </Stack>

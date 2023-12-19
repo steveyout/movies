@@ -144,6 +144,7 @@ export async function getServerSideProps(context) {
       'upcloud'
     );
     movie.sources = sources.sources;
+    movie.subtitles=sources.subtitles
     return {
       props: {
         data: movie,
