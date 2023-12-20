@@ -32,8 +32,6 @@ export default function Faqs() {
         <FaqsHero />
 
         <Container sx={{ mt: 15, mb: 10, position: 'relative' }}>
-          <FaqsCategory />
-
           <Typography variant="h3" sx={{ mb: 5 }}>
             Frequently asked questions
           </Typography>

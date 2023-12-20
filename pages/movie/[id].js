@@ -75,6 +75,20 @@ export default function BlogPost({ data }) {
   useEffect(() => {
     getMovie();
   }, [getMovie]);
+
+  const structuredData = {
+    "@context": "https://schema.org/",
+    "@type": "Movie",
+    "name": movie ? sentenceCase(movie.title) : sentenceCase(id),
+    "productionCompany": {
+      "@type": "Organization",
+      "name": movie&&movie.production
+    },
+    "countryOfOrigin": {
+      "@type": "Country",
+      "name": movie&&movie.country
+    }
+  };
   return (
     <Page
       title={movie ? sentenceCase(movie.title) : sentenceCase(id)}
@@ -84,13 +98,14 @@ export default function BlogPost({ data }) {
           <meta name="keywords" content={movie ? `${movie.tags} ${movie.genres} ${movie.casts}`:''} />
         </>
       }
+      structuredData={structuredData}
     >
       <RootStyle>
         <Container maxWidth={themeStretch ? false : 'lg'}>
           <HeaderBreadcrumbs
-            heading="Video Details"
+            heading="Movie"
             links={[
-              { name: 'Home', href: PATH_PAGE.root },
+              { name: 'Home', href: '/' },
               { name: 'Movies', href: PATH_PAGE.movies },
               { name: movie ? sentenceCase(movie.title) : sentenceCase(id) },
             ]}

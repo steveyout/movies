@@ -1,7 +1,5 @@
 // routes
-import { PATH_AUTH, PATH_DOCS, PATH_PAGE } from '@/routes/paths';
-// components
-import { PATH_AFTER_LOGIN } from '@/config';
+import { PATH_PAGE } from '@/routes/paths';
 // components
 import Iconify from '@/components/Iconify';
 
@@ -29,9 +27,9 @@ const menuConfig = [
     path: PATH_PAGE.movies,
   },
   {
-    title: 'About Us',
+    title: 'Faqs',
     icon: <Iconify icon={'mdi:about-circle-outline'} {...ICON_SIZE} />,
-    path: PATH_PAGE.about,
+    path: PATH_PAGE.faqs,
   },
   /*
   {

@@ -123,9 +123,29 @@ export default function Videos({ data }) {
       setFilters(value);
     }
   };
+  ////////////structured data
+  const list=[]
+  videos&&videos.map((movie,index)=>{
+    list.push({
+      "@type": "ListItem",
+      "position": index,
+      "item": {
+        "@type": "Movie",
+        "url": movie.id.includes('movie')?PATH_PAGE.movie(movie.id.split('movie/')[1]):PATH_PAGE.tv(movie.id.split('tv/')[1]),
+        "name": movie.title,
+        "image": movie.image,
+        "dateCreated": movie.releaseDate,
+      }
+    })
+  })
+  const structuredData = {
+    "@context": "https://schema.org",
+    "@type": "ItemList",
+    "itemListElement": list
+  };
 
   return (
-    <Page title="Youplex movies">
+    <Page title="Youplex movies" structuredData={structuredData}>
       <RootStyle>
         <Container maxWidth={themeStretch ? false : 'lg'}>
           <HeaderBreadcrumbs
