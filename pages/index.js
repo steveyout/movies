@@ -167,7 +167,7 @@ export default function Videos({ data }) {
             <m.div variants={varFade().inRight}>
               <Alert variant="filled" severity="info">
                 <AlertTitle>Important</AlertTitle>
-                We are still under development.Join or{' '}
+                Sharing is caring,Remember to spread the word and help others.Join our{' '}
                 <a
                   href={'https://t.me/youplexannouncments'}
                   style={{ textDecoration: 'underline', color: 'blue' }}
