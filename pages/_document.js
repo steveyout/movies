@@ -117,6 +117,26 @@ export default class MyDocument extends Document {
             src="//acacdn.com/script/atg.js"
             czid="zfceoyvvej"
           />
+          <Script src="https://unpkg.com/magic-snowflakes/dist/snowflakes.min.js" strategy="afterInteractive" />
+          <Script strategy="lazyOnload">
+            {`
+        [
+            '#FF69B4',
+            '#DC143C',
+            '#9ACD32',
+            '#FF8C00',
+            '#7FFFD4',
+            '#9370DB',
+            '#FFD700'
+        ].forEach(function(item) {
+            new Snowflakes({
+                count: 15,
+                maxSize: 60,
+                color: item
+            });
+        });
+    `}
+          </Script>
         </Head>
 
         <body>
