@@ -65,7 +65,7 @@ export default function VideoPostsSearch() {
 
   const handleKeyUp = (event) => {
     if (event.key === 'Enter') {
-      handleClick(searchQuery);
+      handleChangeSearch(searchQuery);
     }
   };
 
@@ -118,6 +118,7 @@ export default function VideoPostsSearch() {
               alt={title}
               src={image}
               sx={{ width: 48, height: 48, borderRadius: 1, flexShrink: 0, mr: 1.5 }}
+              onClick={() => handleClick(id)}
             />
             <Link underline="none" onClick={() => handleClick(id)}>
               {parts.map((part, index) => (

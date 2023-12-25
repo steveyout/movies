@@ -22,9 +22,9 @@ const menuConfig = [
     path: PATH_PAGE.series,
   },
   {
-    title: 'Asian',
+    title: 'Anime',
     icon: <Iconify icon={'fluent:movies-and-tv-20-regular'} {...ICON_SIZE} />,
-    path: PATH_PAGE.movies,
+    path: PATH_PAGE.anime,
   },
   {
     title: 'Faqs',

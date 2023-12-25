@@ -153,7 +153,7 @@ PostContent.propTypes = {
 
 export function PostContent({ title, view, comment, share, createdAt, index, slug }) {
   const isDesktop = useResponsive('up', 'md');
-  const linkTo = slug.includes('movie')?PATH_PAGE.movie(slug.split('movie/')[1]):PATH_PAGE.tv(slug.split('tv/')[1]);
+  const linkTo = slug.includes('movie')?PATH_PAGE.movie(slug.split('movie/')[1]):slug.includes('tv')?PATH_PAGE.tv(slug.split('tv/')[1]):PATH_PAGE.animeWatch(slug);
   const latestPostLarge = index === 0;
   const latestPostSmall = index === 1 || index === 2 || index === 3;
 

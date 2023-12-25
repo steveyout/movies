@@ -7,8 +7,8 @@ import NextLink from 'next/link';
 import { styled } from '@mui/material/styles';
 import { Grid, Button, Container, Stack, Box, Alert, AlertTitle } from '@mui/material';
 // hooks
-import useSettings from '../hooks/useSettings';
-import useIsMountedRef from '../hooks/useIsMountedRef';
+import useSettings from '@/hooks/useSettings';
+import useIsMountedRef from '@/hooks/useIsMountedRef';
 // utils
 import axios from 'axios';
 // routes
@@ -25,7 +25,7 @@ import { VideoPostCard, VideoPostsSort, VideoPostsSearch } from '@/sections/movi
 import EmptyContent from '@/components/EmptyContent';
 import InfiniteScroll from 'react-infinite-scroller';
 import { varFade } from '@/components/animate';
-import { MOVIES } from '@consumet/extensions';
+import { ANIME } from '@consumet/extensions';
 import { useSnackbar } from 'notistack';
 // ----------------------------------------------------------------------
 
@@ -83,10 +83,10 @@ export default function Videos({ data }) {
   const getAllPosts = useCallback(async () => {
     try {
       if (videos && !videos.length) {
-        const response = await axios.get(`/api/movies/trending`);
+        const response = await axios.get(`/api/anime/trending`);
 
         if (isMountedRef.current) {
-          setVideos(response.data);
+          setVideos(response.data.results);
           setPage(page++);
           setLoading(false);
         }
@@ -149,8 +149,8 @@ export default function Videos({ data }) {
       <RootStyle>
         <Container maxWidth={themeStretch ? false : 'lg'}>
           <HeaderBreadcrumbs
-            heading="Movies"
-            links={[{ name: 'Home', href: '/' }, { name: 'Movies',href: PATH_PAGE.movies },{ name: 'Trending' }]}
+            heading="Asian"
+            links={[{ name: 'Home', href: '/' }, { name: 'Asian',href: PATH_PAGE.movies },{ name: 'Trending' }]}
           />
 
           <Stack mb={5} direction="row" alignItems="center" justifyContent="space-between">
@@ -236,15 +236,15 @@ export default function Videos({ data }) {
 
 export async function getServerSideProps(context) {
   try {
-    const flixhq = new MOVIES.FlixHQ();
-    const movies = await flixhq.fetchTrendingMovies();
+    const gogoanime = new ANIME.Gogoanime();
+    const movies = await gogoanime.fetchTopAiring();
     return {
       props: {
-        data: movies,
+        data: movies.results,
       }, // will be passed to the page component as props
     };
   } catch (error) {
-    console.error('error loading data');
+    console.error('error loading data'+error);
     return {
       props: {
         data: [],
