@@ -72,7 +72,7 @@ export default function Videos({ data }) {
 
   const [videos, setVideos] = useState(data);
   const [loading, setLoading] = useState(true);
-  const [url, setUrl] = useState('');
+  const [url, setUrl] = useState(null);
   let [page, setPage] = useState(1);
   const { enqueueSnackbar } = useSnackbar();
 
@@ -83,7 +83,7 @@ export default function Videos({ data }) {
   const getAllPosts = useCallback(async () => {
     try {
       if (videos && !videos.length) {
-        const response = await axios.get(`/api/anime/trending`);
+        const response = await axios.get(`/api/animes/recent`);
 
         if (isMountedRef.current) {
           setVideos(response.data.results);
@@ -149,8 +149,8 @@ export default function Videos({ data }) {
       <RootStyle>
         <Container maxWidth={themeStretch ? false : 'lg'}>
           <HeaderBreadcrumbs
-            heading="Asian"
-            links={[{ name: 'Home', href: '/' }, { name: 'Asian',href: PATH_PAGE.movies },{ name: 'Trending' }]}
+            heading="Anime"
+            links={[{ name: 'Home', href: '/' }, { name: 'Anime',href: PATH_PAGE.movies },{ name: 'Recent' }]}
           />
 
           <Stack mb={5} direction="row" alignItems="center" justifyContent="space-between">
@@ -236,8 +236,8 @@ export default function Videos({ data }) {
 
 export async function getServerSideProps(context) {
   try {
-    const gogoanime = new ANIME.Gogoanime();
-    const movies = await gogoanime.fetchTopAiring();
+    const anime = new ANIME.Zoro();
+    const movies = await anime.fetchRecentEpisodes();
     return {
       props: {
         data: movies.results,

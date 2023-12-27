@@ -16,7 +16,7 @@ export const PATH_PAGE = {
   videos: '/videos',
   movies: '/movies',
   series: '/tv',
-  anime: '/anime',
+  anime: '/animes',
   movie: (id) => `/movie/${id}`,
   tv: (id) => `/tv/${id}`,
   animeWatch: (id) => `/anime/${id}`,

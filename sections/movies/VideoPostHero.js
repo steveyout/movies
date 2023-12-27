@@ -288,8 +288,7 @@ export default function VideoPostHero({ post }) {
     sources,
     subtitles
   } = post;
-  const stream = sources.find((source) => source.quality === '720');
-
+  const stream = sources.find((source) => source.quality&&source.quality.includes('auto'));
   function preventHorizontalKeyboardNavigation(event) {
     if (event.key === 'ArrowLeft' || event.key === 'ArrowRight') {
       event.preventDefault();
@@ -586,7 +585,7 @@ export default function VideoPostHero({ post }) {
           <Box sx={{ ml: 2 }}>
             <Typography variant="subtitle1">{title}</Typography>
             <Typography variant="body2" sx={{ color: 'grey.500' }}>
-              {fDate(releaseDate)}
+              {releaseDate&&fDate(releaseDate)}
             </Typography>
           </Box>
         </Box>

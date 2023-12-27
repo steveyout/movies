@@ -58,7 +58,7 @@ export default function BlogPost({ data }) {
   const getMovie = useCallback(async () => {
     try {
       if (!movie) {
-        const response = await axios.get(`/api/movie/${id}`);
+        const response = await axios.get(`/api/anime/${id}`);
 
         if (isMountedRef.current) {
           setMovie(response.data);
@@ -143,7 +143,7 @@ export default function BlogPost({ data }) {
 
           {error && <Typography variant="h6">404 {error}!</Typography>}
 
-          {!loading && <VideoPostRecent posts={movie.recommendations} />}
+          {!loading&&movie.recommendations&& <VideoPostRecent posts={movie.recommendations} />}
         </Container>
       </RootStyle>
     </Page>
@@ -153,13 +153,10 @@ export default function BlogPost({ data }) {
 export async function getServerSideProps(context) {
   try {
     const id = context.params.id;
-    const gogoanime = new ANIME.Gogoanime();
-    const movie = await gogoanime.fetchAnimeInfo(id);
-    const sources = await flixhq.fetchEpisodeSources(
-      movie.episodes[0].id,
-      `movie/${id}`,
-      'upcloud'
-    );
+    const anime =new ANIME.Zoro();
+    const movie = await anime.fetchAnimeInfo(id);
+    const sources = await anime.fetchEpisodeSources( movie.episodes[0].id);
+    console.log(movie)
     movie.sources = sources.sources;
     movie.subtitles=sources.subtitles
     return {
