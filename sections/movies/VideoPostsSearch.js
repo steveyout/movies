@@ -46,7 +46,7 @@ export default function VideoPostsSearch() {
           setSearchQuery(value);
           setLoading(true)
           const response = await axios.get(`/api/search/`, {
-            params: {query: value},
+            params: {query: value,type:pathname.includes('anime')?'anime':'movie'},
           });
             setSearchResults(response.data.results);
             setLoading(false)
@@ -60,7 +60,7 @@ export default function VideoPostsSearch() {
     },1000)
 
   const handleClick = (slug) => {
-    push(slug.includes('movie')?PATH_PAGE.movie(slug.split('movie/')[1]):PATH_PAGE.tv(slug.split('tv/')[1]));
+    push(slug.includes('movie')?PATH_PAGE.movie(slug.split('movie/')[1]):slug.includes('tv')?PATH_PAGE.tv(slug.split('tv/')[1]):PATH_PAGE.animeWatch(slug));
   };
 
   const handleKeyUp = (event) => {
@@ -86,7 +86,7 @@ export default function VideoPostsSearch() {
         <InputStyle
           {...params}
           stretchStart={200}
-          placeholder={pathname.includes('tv')?'Search series...':'Search movies...'}
+          placeholder={pathname.includes('tv')?'Search series...':pathname.includes('anime')?'Search anime':'Search movies...'}
           onKeyUp={handleKeyUp}
           InputProps={{
             ...params.InputProps,

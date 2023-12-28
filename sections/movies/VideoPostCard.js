@@ -55,7 +55,7 @@ export default function VideoPostCard({ video, index, status }) {
     return (
       <Card>
         <Avatar
-          alt={title}
+          alt={typeof title === 'object'?title.english:title}
           src={image}
           sx={{
             zIndex: 9,
@@ -67,7 +67,7 @@ export default function VideoPostCard({ video, index, status }) {
           }}
         />
         <PostContent
-          title={title}
+          title={typeof title === 'object'?title.english:title}
           view={duration}
           comment={duration}
           share={duration}
@@ -111,9 +111,9 @@ export default function VideoPostCard({ video, index, status }) {
           }}
         />
         <Avatar
-          alt={title}
+          alt={typeof title === 'object'?title.english:title}
           src={image}
-          color={image ? 'default' : createAvatar(title).color}
+          color={image ? 'default' : createAvatar(typeof title === 'object'?title.english:title).color}
           sx={{
             left: 24,
             zIndex: 9,
@@ -127,7 +127,7 @@ export default function VideoPostCard({ video, index, status }) {
       </Box>
 
       <PostContent
-        title={title}
+        title={typeof title === 'object'?title.english:title}
         view={duration}
         comment={duration}
         share={duration}

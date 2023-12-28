@@ -25,7 +25,7 @@ import { VideoPostCard, VideoPostsSort, VideoPostsSearch } from '@/sections/movi
 import EmptyContent from '@/components/EmptyContent';
 import InfiniteScroll from 'react-infinite-scroller';
 import { varFade } from '@/components/animate';
-import { ANIME } from '@consumet/extensions';
+import { ANIME } from "@consumet/extensions";
 import { useSnackbar } from 'notistack';
 // ----------------------------------------------------------------------
 
@@ -236,8 +236,8 @@ export default function Videos({ data }) {
 
 export async function getServerSideProps(context) {
   try {
-    const anime = new ANIME.Zoro();
-    const movies = await anime.fetchRecentEpisodes();
+    const anime = new ANIME.AnimeSaturn();
+    const movies = await anime.search("one");
     return {
       props: {
         data: movies.results,

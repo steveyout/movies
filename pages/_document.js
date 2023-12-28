@@ -117,6 +117,7 @@ export default class MyDocument extends Document {
             src="//acacdn.com/script/atg.js"
             czid="zfceoyvvej"
           />
+          {/*
           <Script src="https://unpkg.com/magic-snowflakes/dist/snowflakes.min.js" strategy="afterInteractive" />
           <Script strategy="lazyOnload">
             {`
@@ -137,6 +138,7 @@ export default class MyDocument extends Document {
         });
     `}
           </Script>
+          */}
         </Head>
 
         <body>

@@ -288,7 +288,7 @@ export default function VideoPostHero({ post }) {
     sources,
     subtitles
   } = post;
-  const stream = sources.find((source) => source.quality&&source.quality.includes('auto'));
+  const stream = sources.find((source) => source.quality&&source.quality.includes('auto'))||sources[1];
   function preventHorizontalKeyboardNavigation(event) {
     if (event.key === 'ArrowLeft' || event.key === 'ArrowRight') {
       event.preventDefault();

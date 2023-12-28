@@ -23,7 +23,7 @@ import { SkeletonPost } from '@/components/skeleton';
 // sections
 import { VideoPostHero, VideoPostTags, VideoPostRecent } from '@/sections/movies';
 import Iconify from '@/components/Iconify';
-import { ANIME } from '@consumet/extensions';
+import {ANIME } from "@consumet/extensions";
 import { useSnackbar } from 'notistack';
 
 const RootStyle = styled('div')(({ theme }) => ({
@@ -132,7 +132,7 @@ export default function BlogPost({ data }) {
                   </Box>
                 </Stack>
                 <Box>
-                  <VideoPostTags post={movie} />
+                  <VideoPostTags post={movie} setMovie={setMovie}/>
                 </Box>
                 {movie.description}
               </Box>
@@ -153,10 +153,9 @@ export default function BlogPost({ data }) {
 export async function getServerSideProps(context) {
   try {
     const id = context.params.id;
-    const anime =new ANIME.Zoro();
+    const anime =new ANIME.AnimeSaturn();
     const movie = await anime.fetchAnimeInfo(id);
     const sources = await anime.fetchEpisodeSources( movie.episodes[0].id);
-    console.log(movie)
     movie.sources = sources.sources;
     movie.subtitles=sources.subtitles
     return {

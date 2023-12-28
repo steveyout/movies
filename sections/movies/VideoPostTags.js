@@ -16,7 +16,7 @@ VideoPostTags.propTypes = {
 };
 
 export default function VideoPostTags({ post,setMovie }) {
-    const { query } = useRouter();
+    const { query,pathname } = useRouter();
     const[active,setActive]=useState(0);
     const[loading,setLoading]=useState(false)
   const { enqueueSnackbar } = useSnackbar();
@@ -31,7 +31,8 @@ export default function VideoPostTags({ post,setMovie }) {
                 const response = await axios.get(`/api/episode/${id}`,{
                     params: {
                       id: id,
-                        episode:episodeId
+                        episode:episodeId,
+                      type:pathname.includes('anime')?'anime':'movie'
                     },
                 });
 
@@ -45,6 +46,7 @@ export default function VideoPostTags({ post,setMovie }) {
             }
         } catch (error) {
           enqueueSnackbar('Oops! Something went wrong', { variant: 'error' });
+          console.log(error)
           setLoading(false)
         }
     };
@@ -57,7 +59,7 @@ export default function VideoPostTags({ post,setMovie }) {
       {tags &&
         tags.map((tag) => <Chip key={tag} label={tag} sx={{ m: 0.5 }} variant={'outlined'} />)}
     </Box>
-        {type==='TV Series'&&(
+        {['tv','anime'].some(el => pathname.includes(el))&&(
     <Box sx={{ py: 3 }}>
         <Typography variant="h6" sx={{ mb: 5 }}>
             Episodes
@@ -71,7 +73,7 @@ export default function VideoPostTags({ post,setMovie }) {
               </Typography>
                 {episodes.map((episode,index) =>
                   episode.season===e.season&&(
-              <Chip key={episode.id} label={episode.title} sx={{ m: 0.5 }} color={active===index?'primary':'default'}
+              <Chip key={episode.id} label={episode.title?episode.title:episode.id} sx={{ m: 0.5 }} color={active===index?'primary':'default'}
                     onClick={(e)=>handleChangeEpisode(episode.id,index)}/>
                     ))}
               </>
