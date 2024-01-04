@@ -3,12 +3,12 @@ const flixhq = new MOVIES.FlixHQ();
 const anime = new ANIME.AnimeSaturn();
 export default async function handler(req, res) {
   try {
-    const { query,type } = await req.query;
+    const { query,type,page } = await req.query;
     let movies=[]
     if (type==='anime'){
       movies = await anime.search(query);
     }else {
-       movies = await flixhq.search(query);
+       movies = await flixhq.search(query,page&&page);
     }
     res.status(200).json(movies);
   } catch (error) {

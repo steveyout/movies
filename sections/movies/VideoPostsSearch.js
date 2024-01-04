@@ -86,7 +86,7 @@ export default function VideoPostsSearch() {
         <InputStyle
           {...params}
           stretchStart={200}
-          placeholder={pathname.includes('tv')?'Search series...':pathname.includes('anime')?'Search anime':'Search movies...'}
+          placeholder={pathname.includes('tv')?'Quick Search series...':pathname.includes('anime')?'Quick Search anime':'Quick Search movies...'}
           onKeyUp={handleKeyUp}
           InputProps={{
             ...params.InputProps,

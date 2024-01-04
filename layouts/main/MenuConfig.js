@@ -13,7 +13,7 @@ const ICON_SIZE = {
 const menuConfig = [
   {
     title: 'Movies',
-    icon: <Iconify icon={'material-symbols:home-pin'} {...ICON_SIZE} />,
+    icon: <Iconify icon={'ic:outline-local-movies'} {...ICON_SIZE} />,
     path: '/',
   },
   {
@@ -25,6 +25,11 @@ const menuConfig = [
     title: 'Anime',
     icon: <Iconify icon={'fluent:movies-and-tv-20-regular'} {...ICON_SIZE} />,
     path: PATH_PAGE.anime,
+  },
+  {
+    title: 'Search',
+    icon: <Iconify icon={'carbon:search'} {...ICON_SIZE} />,
+    path: PATH_PAGE.search,
   },
   {
     title: 'Faqs',
