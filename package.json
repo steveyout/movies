@@ -18,7 +18,7 @@
   },
   "dependencies": {
     "@auth0/auth0-spa-js": "^1.20.1",
-    "@consumet/extensions": "^1.5.4",
+    "@consumet/extensions": "^1.5.5",
     "@emotion/cache": "^11.7.1",
     "@emotion/react": "^11.8.2",
     "@emotion/server": "^11.4.0",
