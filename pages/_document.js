@@ -115,7 +115,7 @@ export default class MyDocument extends Document {
             strategy="lazyOnload"
             data-adel="atag"
             src="//acacdn.com/script/atg.js"
-            czid="zfceoyvvej"
+            czid="jcfwvneq4r"
           />
           {/*
           <Script src="https://unpkg.com/magic-snowflakes/dist/snowflakes.min.js" strategy="afterInteractive" />
