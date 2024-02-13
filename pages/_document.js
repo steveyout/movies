@@ -98,7 +98,7 @@ export default class MyDocument extends Document {
           {/* Google tag (gtag.js)*/}
           <Script
             async
-            src="https://www.googletagmanager.com/gtag/js?id=G-DCJMY899PF"
+            src="https://www.googletagmanager.com/gtag/js?id=G-PQEDR9JBYK"
             strategy="afterInteractive"
           />
           <Script id="google-analytics" strategy="afterInteractive">
@@ -107,7 +107,7 @@ export default class MyDocument extends Document {
             function gtag(){dataLayer.push(arguments);}
             gtag('js', new Date());
 
-            gtag('config', 'G-DCJMY899PF');
+            gtag('config', 'G-PQEDR9JBYK');
             `}
           </Script>
           {/*
