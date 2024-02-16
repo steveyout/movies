@@ -23,7 +23,6 @@ import { SkeletonPost } from '@/components/skeleton';
 // sections
 import { VideoPostHero, VideoPostTags, VideoPostRecent } from '@/sections/movies';
 import Iconify from '@/components/Iconify';
-import { MOVIES } from '@consumet/extensions';
 import { useSnackbar } from 'notistack';
 
 const RootStyle = styled('div')(({ theme }) => ({
@@ -153,13 +152,16 @@ export default function BlogPost({ data }) {
 export async function getServerSideProps(context) {
   try {
     const id = context.params.id;
-    const flixhq = new MOVIES.FlixHQ();
-    const movie = await flixhq.fetchMediaInfo(`tv/${id}`);
-    const sources = await flixhq.fetchEpisodeSources(
-      movie.episodes[0].id,
-      `tv/${id}`,
-      'upcloud'
-    );
+    const response = await axios.get(`${process.env.API}/movies/flixhq/info?id=tv/${id}`)
+    const movie=response.data;
+    const {data} =await axios.get(`${process.env.API}/movies/flixhq/watch`,
+      {
+        params: {
+          episodeId:  movie.episodes[0].id,
+          mediaId:  `tv/${id}`,
+          server: "upcloud"
+        } });
+    const sources=data
     movie.sources = sources.sources;
     return {
       props: {

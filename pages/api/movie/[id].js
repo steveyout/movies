@@ -1,16 +1,19 @@
 ///axios
-import { MOVIES } from '@consumet/extensions';
+import axios from 'axios'
 
 export default async function handler(req, res) {
   try {
     const { id } = await req.query;
-    const flixhq = new MOVIES.FlixHQ();
-    const movie = await flixhq.fetchMediaInfo(`movie/${id}`);
-    const sources = await flixhq.fetchEpisodeSources(
-      movie.episodes[0].id,
-      `movie/${id}`,
-      'upcloud'
-    );
+    const response = await axios.get(`${process.env.API}/movies/flixhq/info?id=movie/${id}`)
+    const movie=response.data;
+    const {data} =await axios.get(`${process.env.API}/movies/flixhq/watch`,
+      {
+        params: {
+          episodeId:  movie.episodes[0].id,
+          mediaId:  `movie/${id}`,
+          server: "upcloud"
+        } });
+    const sources=data
     movie.sources = sources.sources;
     movie.subtitles=sources.subtitles
     res.status(200).json(movie);

@@ -17,13 +17,11 @@ import axios from 'axios';
 import Layout from '@/layouts';
 // components
 import Page from '@/components/Page';
-import Markdown from '@/components/Markdown';
 import HeaderBreadcrumbs from '@/components/HeaderBreadcrumbs';
 import { SkeletonPost } from '@/components/skeleton';
 // sections
 import { VideoPostHero, VideoPostTags, VideoPostRecent } from '@/sections/movies';
 import Iconify from '@/components/Iconify';
-import { MOVIES } from '@consumet/extensions';
 import { useSnackbar } from 'notistack';
 
 const RootStyle = styled('div')(({ theme }) => ({
@@ -153,13 +151,16 @@ export default function BlogPost({ data }) {
 export async function getServerSideProps(context) {
   try {
     const id = context.params.id;
-    const flixhq = new MOVIES.FlixHQ();
-    const movie = await flixhq.fetchMediaInfo(`movie/${id}`);
-    const sources = await flixhq.fetchEpisodeSources(
-      movie.episodes[0].id,
-      `movie/${id}`,
-      'upcloud'
-    );
+    const response = await axios.get(`${process.env.API}/movies/flixhq/info?id=movie/${id}`)
+    const movie=response.data;
+    const {data} =await axios.get(`${process.env.API}/movies/flixhq/watch`,
+      {
+        params: {
+          episodeId:  movie.episodes[0].id,
+          mediaId:  `movie/${id}`,
+          server: "upcloud"
+        } });
+    const sources=data
     movie.sources = sources.sources;
     movie.subtitles=sources.subtitles
     return {

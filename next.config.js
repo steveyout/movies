@@ -31,6 +31,7 @@ module.exports = {
   },
   env: {
     TITLE: 'Youplex',
-    SITE_URL:'https://www.youplex.site'
+    SITE_URL:'https://www.youplex.site',
+    API:'https://api.youplex.site'
   },
 };
