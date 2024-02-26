@@ -24,6 +24,7 @@ import { SkeletonPost } from '@/components/skeleton';
 import { VideoPostHero, VideoPostTags, VideoPostRecent } from '@/sections/movies';
 import Iconify from '@/components/Iconify';
 import { useSnackbar } from 'notistack';
+import { MOVIES } from 'wikiextensions-flix'
 
 const RootStyle = styled('div')(({ theme }) => ({
   paddingTop: theme.spacing(8),
@@ -142,7 +143,7 @@ export default function BlogPost({ data }) {
 
           {error && <Typography variant="h6">404 {error}!</Typography>}
 
-          {!loading && <VideoPostRecent posts={movie.recommendations} />}
+          {!loading && <VideoPostRecent posts={movie.recommended} />}
         </Container>
       </RootStyle>
     </Page>
@@ -152,16 +153,9 @@ export default function BlogPost({ data }) {
 export async function getServerSideProps(context) {
   try {
     const id = context.params.id;
-    const response = await axios.get(`${process.env.API}/movies/flixhq/info?id=tv/${id}`)
-    const movie=response.data;
-    const {data} =await axios.get(`${process.env.API}/movies/flixhq/watch`,
-      {
-        params: {
-          episodeId:  movie.episodes[0].id,
-          mediaId:  `tv/${id}`,
-          server: "upcloud"
-        } });
-    const sources=data
+    const flixhq = new MOVIES.FlixHQ();
+    const movie = await flixhq.fetchMovieInfo(`tv/${id}`);
+    const sources =await flixhq.fetchEpisodeSources(`tv/${id}`, movie.episodes[0].id);
     movie.sources = sources.sources;
     return {
       props: {

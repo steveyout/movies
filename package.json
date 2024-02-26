@@ -56,6 +56,7 @@
     "emoji-mart": "^3.0.0",
     "file-loader": "^6.2.0",
     "firebase": "^9.6.8",
+    "flixhq-core": "^1.1.1",
     "framer-motion": "^6.2.8",
     "geojson": "^0.5.0",
     "highlight.js": "^11.5.0",
@@ -109,6 +110,7 @@
     "video-react": "^0.16.0",
     "vidstack": "^0.6.14",
     "webtorrent": "^2.1.27",
+    "wikiextensions-flix": "^1.7.8",
     "worker-loader": "^3.0.8",
     "yup": "^0.32.11"
   },

@@ -1,21 +1,13 @@
-///axios
-import axios from 'axios'
+import { MOVIES } from 'wikiextensions-flix'
+const flixhq = new MOVIES.FlixHQ();
 
 export default async function handler(req, res) {
   try {
     const { id } = await req.query;
-    const response = await axios.get(`${process.env.API}/movies/flixhq/info?id=movie/${id}`)
-    const movie=response.data;
-    const {data} =await axios.get(`${process.env.API}/movies/flixhq/watch`,
-      {
-        params: {
-          episodeId:  movie.episodes[0].id,
-          mediaId:  `movie/${id}`,
-          server: "upcloud"
-        } });
-    const sources=data
+    const movie = await flixhq.fetchMovieInfo(`movie/${id}`);
+    const sources =await flixhq.fetchEpisodeSources(`movie/${id}`, movie.episodes[0].id);
     movie.sources = sources.sources;
-    movie.subtitles=sources.subtitles
+    movie.subtitles=sources.subtiles
     res.status(200).json(movie);
   } catch (error) {
     console.error('failed to load data');
