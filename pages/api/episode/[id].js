@@ -11,8 +11,8 @@ export default async function handler(req, res) {
       sources = await anime.fetchEpisodeSources( episode);
     }else {
       sources = await flixhq.fetchEpisodeSources(
-        episode,
-        id
+        `tv/${id}`,
+        episode
       );
     }
     res.status(200).json(sources);
