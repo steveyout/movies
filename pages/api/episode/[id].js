@@ -12,8 +12,7 @@ export default async function handler(req, res) {
     }else {
       sources = await flixhq.fetchEpisodeSources(
         episode,
-        id,
-        'upcloud'
+        id
       );
     }
     res.status(200).json(sources);
