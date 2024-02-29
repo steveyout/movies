@@ -110,6 +110,7 @@
     "video-react": "^0.16.0",
     "vidstack": "^0.6.14",
     "webtorrent": "^2.1.27",
+    "wikiextension-1hdto": "^1.8.4",
     "wikiextensions-flix": "^1.7.8",
     "worker-loader": "^3.0.8",
     "yup": "^0.32.11"
