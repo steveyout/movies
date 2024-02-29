@@ -1,10 +1,10 @@
-import { MOVIES } from 'wikiextensions-flix'
+import { MOVIES } from '@consumet/extensions'
 const flixhq = new MOVIES.FlixHQ();
 
 export default async function handler(req, res) {
   try {
     const { id } = await req.query;
-    const movie = await flixhq.fetchMovieInfo(`tv/${id}`);
+    const movie = await flixhq.fetchMediaInfo(`tv/${id}`);
     const sources =await flixhq.fetchEpisodeSources(`tv/${id}`, movie.episodes[0].id);
     movie.sources = sources.sources;
     res.status(200).json(movie);

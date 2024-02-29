@@ -24,7 +24,7 @@ import { SkeletonPost } from '@/components/skeleton';
 import { VideoPostHero, VideoPostTags, VideoPostRecent } from '@/sections/movies';
 import Iconify from '@/components/Iconify';
 import { useSnackbar } from 'notistack';
-import { MOVIES } from 'wikiextensions-flix'
+import { MOVIES } from '@consumet/extensions'
 
 const RootStyle = styled('div')(({ theme }) => ({
   paddingTop: theme.spacing(8),
@@ -154,7 +154,7 @@ export async function getServerSideProps(context) {
   try {
     const id = context.params.id;
     const flixhq = new MOVIES.FlixHQ();
-    const movie = await flixhq.fetchMovieInfo(`tv/${id}`);
+    const movie = await flixhq.fetchMediaInfo(`tv/${id}`);
     const sources =await flixhq.fetchEpisodeSources(`tv/${id}`, movie.episodes[0].id);
     movie.sources = sources.sources;
     return {
