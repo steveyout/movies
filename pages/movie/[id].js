@@ -13,7 +13,7 @@ import useSettings from '@/hooks/useSettings';
 import useIsMountedRef from '@/hooks/useIsMountedRef';
 // utils
 import axios from 'axios';
-import { MOVIES } from '@consumet/extensions'
+import { MOVIES } from 'wikiextensions-flix';
 // layouts
 import Layout from '@/layouts';
 // components
@@ -153,10 +153,10 @@ export async function getServerSideProps(context) {
   try {
     const id = context.params.id;
     const flixhq = new MOVIES.FlixHQ();
-    const movie = await flixhq.fetchMediaInfo(`movie/${id}`);
+    const movie = await flixhq.fetchMovieInfo(`movie/${id}`);
     const sources =await flixhq.fetchEpisodeSources(`movie/${id}`, movie.episodes[0].id);
     movie.sources = sources.sources;
-    movie.subtitles=sources.subtitles
+    movie.subtitles=sources.subtiles
     return {
       props: {
         data: movie,

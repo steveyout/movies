@@ -1,5 +1,6 @@
 ///axios
-import { ANIME,MOVIES } from '@consumet/extensions';
+import { ANIME} from '@consumet/extensions';
+import {MOVIES} from 'wikiextensions-flix';
 const flixhq = new MOVIES.FlixHQ();
 const anime =new ANIME.AnimeSaturn();
 export default async function handler(req, res) {

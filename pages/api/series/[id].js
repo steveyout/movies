@@ -1,4 +1,4 @@
-import { MOVIES } from '@consumet/extensions'
+import { MOVIES } from 'wikiextensions-flix'
 const flixhq = new MOVIES.FlixHQ();
 
 export default async function handler(req, res) {
@@ -7,6 +7,7 @@ export default async function handler(req, res) {
     const movie = await flixhq.fetchMediaInfo(`tv/${id}`);
     const sources =await flixhq.fetchEpisodeSources(`tv/${id}`, movie.episodes[0].id);
     movie.sources = sources.sources;
+    movie.subtitles=sources.subtiles
     res.status(200).json(movie);
   } catch (error) {
     console.error('failed to load data');
