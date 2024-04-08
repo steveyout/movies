@@ -49,7 +49,16 @@ export default async function handler(req, res) {
     let browser = await puppeteer.launch({
       headless: true,
       ignoreHTTPSErrors: true,
-      args: ["--no-sandbox"]
+      args: [
+        "--no-sandbox",
+        '--aggressive-cache-discard',
+        '--disable-cache',
+        '--disable-application-cache',
+        '--disable-offline-load-stale-cache',
+        '--disable-gpu-shader-disk-cache',
+        '--media-cache-size=0',
+        '--disk-cache-size=0',
+      ]
     })
   const page = await browser.newPage();
   await page.setRequestInterception(true);
