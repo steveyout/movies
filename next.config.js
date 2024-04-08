@@ -32,6 +32,7 @@ module.exports = {
   env: {
     TITLE: 'Youplex',
     SITE_URL:'https://youplex.site',
-    API:'https://api.youplex.site'
+    API:'https://youplex.site',
+    BASE_URL:'https://flixhq.to'
   },
 };
