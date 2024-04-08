@@ -47,8 +47,9 @@ export default async function handler(req, res) {
 
   // create browser based on ENV
     let browser = await puppeteer.launch({
-      headless: false,
-      ignoreHTTPSErrors: true
+      headless: true,
+      ignoreHTTPSErrors: true,
+      args: ["--no-sandbox"]
     })
   const page = await browser.newPage();
   await page.setRequestInterception(true);
