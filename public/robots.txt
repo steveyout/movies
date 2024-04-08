@@ -1,3 +1,10 @@
-# https://www.robotstxt.org/robotstxt.html
+# *
 User-agent: *
-Disallow:
+Allow: /
+
+# Host
+Host: https://youplex.site
+
+# Sitemaps
+Sitemap: https://youplex.site/sitemap.xml
+Sitemap: https://youplex.site/server-sitemap.xml

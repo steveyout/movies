@@ -11,7 +11,7 @@
     "dev": "next dev",
     "build": "next build",
     "postbuild": "next-sitemap",
-    "start": "next start",
+    "start": "next start -p 3030",
     "clear-all": "rm -rf .next node_modules",
     "re-start": "rm -rf .next node_modules && yarn install && yarn dev",
     "re-build": "rm -rf .next node_modules && yarn install && yarn build"
@@ -74,7 +74,7 @@
     "media-icons": "^0.4.2",
     "moment": "^2.29.4",
     "moment-duration-format": "^2.3.2",
-    "next": "latest",
+    "next": "^12.3.4",
     "next-sitemap": "^3.1.47",
     "notistack": "^2.0.3",
     "nprogress": "^0.2.0",
