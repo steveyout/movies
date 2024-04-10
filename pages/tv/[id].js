@@ -129,6 +129,14 @@ export default function BlogPost({ data }) {
                         </Button>
                       </NextLink>
                     </Tooltip>
+                    <Box sx={{m:3}}/>
+                    <Tooltip title={`Join Our Discord`}>
+                      <NextLink href={'https://discord.gg/vJMwAZDgwX'} passHref>
+                        <Button variant="contained" color={'secondary'} startIcon={<Iconify icon={'iconoir:discord'} />}>
+                          Discord
+                        </Button>
+                      </NextLink>
+                    </Tooltip>
                   </Box>
                 </Stack>
                 <Box>

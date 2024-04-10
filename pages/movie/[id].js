@@ -123,8 +123,16 @@ export default function BlogPost({ data }) {
                   <Box>
                     <Tooltip title={`Join Telegram channel`}>
                       <NextLink href={'https://t.me/youplexannouncments'} passHref>
-                        <Button variant="contained" startIcon={<Iconify icon={'la:telegram'} />}>
+                        <Button variant="contained" startIcon={<Iconify icon={'la:telegram'}/>}>
                           Telegram
+                        </Button>
+                      </NextLink>
+                    </Tooltip>
+                    <Box sx={{m:3}}/>
+                    <Tooltip title={`Join Our Discord`}>
+                      <NextLink href={'https://discord.gg/vJMwAZDgwX'} passHref>
+                        <Button variant="contained" color={'secondary'} startIcon={<Iconify icon={'iconoir:discord'} />}>
+                          Discord
                         </Button>
                       </NextLink>
                     </Tooltip>
