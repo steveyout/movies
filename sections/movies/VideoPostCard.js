@@ -203,29 +203,6 @@ export function PostContent({ title, view, comment, share, createdAt, index, slu
           </TextMaxLine>
         </Link>
       </NextLink>
-
-      <Stack
-        flexWrap="wrap"
-        direction="row"
-        justifyContent="space-evenly"
-        sx={{
-          mt: 3,
-          color: 'text.disabled',
-          ...((latestPostLarge || latestPostSmall) && {
-            opacity: 0.64,
-            color: 'common.white',
-          }),
-        }}
-      >
-        {POST_INFO.map((info, index) => (
-          <TextIconLabel
-            key={index}
-            icon={<Iconify icon={info.icon} sx={{ width: 16, height: 16, mr: 0.5 }} />}
-            value={fShortenNumber(info.number)}
-            sx={{ typography: 'caption', ml: index === 0 ? 0 : 1.5 }}
-          />
-        ))}
-      </Stack>
     </CardContent>
   );
 }
