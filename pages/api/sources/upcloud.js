@@ -23,6 +23,7 @@ require('puppeteer-extra-plugin-stealth/evasions/window.outerdimensions')
 
 const StealthPlugin = require('puppeteer-extra-plugin-stealth')
 puppeteer.use(StealthPlugin())
+let browser;
 
 export default async function handler(req, res) {
   let {body,method} = req
@@ -46,7 +47,7 @@ export default async function handler(req, res) {
   const id = body.id;
 
   // create browser based on ENV
-    let browser = await puppeteer.launch({
+  if(!browser) browser = await puppeteer.launch({
       headless: true,
       ignoreHTTPSErrors: true,
       args: [
@@ -86,7 +87,7 @@ export default async function handler(req, res) {
   } catch (error) {
     return res.status(500).end(`Server Error,check the params.`)
   }
-  await browser.close();
+  await page.close();
 
   // Response headers.
   res.setHeader('Cache-Control', 's-maxage=10, stale-while-revalidate')
