@@ -12,7 +12,8 @@ import { PATH_PAGE } from '@/routes/paths';
 import useSettings from '@/hooks/useSettings';
 import useIsMountedRef from '@/hooks/useIsMountedRef';
 // utils
-import axios from 'axios';
+import axios from '@/utils/axios';
+import { MOVIES } from 'wikiextensions-flix';
 // layouts
 import Layout from '@/layouts';
 // components
@@ -24,7 +25,6 @@ import { SkeletonPost } from '@/components/skeleton';
 import { VideoPostHero, VideoPostTags, VideoPostRecent } from '@/sections/movies';
 import Iconify from '@/components/Iconify';
 import { useSnackbar } from 'notistack';
-import { MOVIES } from 'wikiextensions-flix'
 
 const RootStyle = styled('div')(({ theme }) => ({
   paddingTop: theme.spacing(8),
@@ -51,14 +51,19 @@ export default function BlogPost({ data }) {
   const { id } = query;
   const [movie, setMovie] = useState(data);
   const [loading, setLoading] = useState(true);
-
-  const [error, setError] = useState(null);
+  const [streamingServer,setStreamingServer]=useState({
+    isChanging:false,
+    server:'UpCloud'
+  })
   const { enqueueSnackbar } = useSnackbar();
 
-  const getMovie = useCallback(async () => {
+  const [error, setError] = useState(null);
+
+  const getMovie = useCallback(async (server,isChanging) => {
     try {
-      if (!movie) {
-        const response = await axios.get(`/api/series/${id}`);
+      if (!movie||isChanging) {
+        setLoading(true)
+        const response = await axios.get(`/api/series/${id}`,{params:{server:server}});
 
         if (isMountedRef.current) {
           setMovie(response.data);
@@ -73,8 +78,8 @@ export default function BlogPost({ data }) {
   }, [isMountedRef]);
 
   useEffect(() => {
-    getMovie();
-  }, [getMovie]);
+    getMovie(streamingServer.server,streamingServer.isChanging);
+  }, [getMovie,streamingServer]);
 
   const structuredData = {
     "@context": "https://schema.org/",
@@ -113,7 +118,7 @@ export default function BlogPost({ data }) {
 
           {!loading && (
             <Card>
-              <VideoPostHero post={movie} />
+              <VideoPostHero post={movie} setStreamingServer={setStreamingServer} streamingServer={streamingServer}/>
 
               <Box sx={{ p: { xs: 3, md: 5 } }}>
                 <Stack flexWrap="wrap" direction="row" justifyContent="space-between">
@@ -200,7 +205,7 @@ export async function getServerSideProps(context) {
 
     videoResult.subtitles = sources.data.subtitle.map((s) => ({
       url: s.file?s.file:s,
-      lang: s.label ? s.label : 'Default',
+      lang: s.label ? s.label : s,
     }));
     movie.sources = videoResult.sources;
     movie.subtitles=videoResult.subtitles

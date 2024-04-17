@@ -1,5 +1,4 @@
 const puppeteer = require('puppeteer-extra');
-const chrome = require('@sparticuz/chromium');
 
 // Stealth plugin issue - There is a good fix but currently this works.
 require('puppeteer-extra-plugin-user-data-dir')
@@ -24,6 +23,7 @@ require('puppeteer-extra-plugin-stealth/evasions/window.outerdimensions')
 
 const StealthPlugin = require('puppeteer-extra-plugin-stealth')
 puppeteer.use(StealthPlugin())
+let browser;
 
 export default async function handler (req, res)  {
   let {body,method} = req
@@ -45,24 +45,23 @@ export default async function handler (req, res)  {
   if (typeof body === 'object' && !body.id) return res.status(400).end(`No url provided`)
 
   const id = body.id;
-  const isProd = process.env.NODE_ENV === 'production'
+
 
   // create browser based on ENV
-  let browser;
-  if (isProd) {
-    browser = await puppeteer.launch({
-      args: chrome.args,
-      defaultViewport: chrome.defaultViewport,
-      executablePath: await chrome.executablePath(),
-      headless: true,
-      ignoreHTTPSErrors: true
-    })
-  } else {
-    browser = await puppeteer.launch({
-      headless: true,
-      executablePath: '/Applications/Google Chrome.app/Contents/MacOS/Google Chrome',
-    })
-  }
+  if(!browser) browser = await puppeteer.launch({
+    headless: true,
+    ignoreHTTPSErrors: true,
+    args: [
+      "--no-sandbox",
+      '--aggressive-cache-discard',
+      '--disable-cache',
+      '--disable-application-cache',
+      '--disable-offline-load-stale-cache',
+      '--disable-gpu-shader-disk-cache',
+      '--media-cache-size=0',
+      '--disk-cache-size=0',
+    ]
+  })
   const page = await browser.newPage();
   await page.setRequestInterception(true);
 
@@ -89,7 +88,7 @@ export default async function handler (req, res)  {
   } catch (error) {
     return res.status(500).end(`Server Error,check the params.`)
   }
-  await browser.close();
+  await page.close();
 
   // Response headers.
   res.setHeader('Cache-Control', 's-maxage=10, stale-while-revalidate')

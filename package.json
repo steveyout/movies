@@ -41,7 +41,7 @@
     "@sparticuz/chromium": "^123.0.1",
     "@turf/bbox": "^6.5.0",
     "@typescript-eslint/parser": "^5.50.0",
-    "@vidstack/react": "next",
+    "@vidstack/react": "^1.11.17",
     "amazon-cognito-identity-js": "^5.2.8",
     "apexcharts": "^3.33.2",
     "autosuggest-highlight": "^3.2.1",
