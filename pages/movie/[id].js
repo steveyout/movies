@@ -50,14 +50,19 @@ export default function BlogPost({ data }) {
   const { id } = query;
   const [movie, setMovie] = useState(data);
   const [loading, setLoading] = useState(true);
+  const [streamingServer,setStreamingServer]=useState({
+    isChanging:false,
+    server:'UpCloud'
+  })
   const { enqueueSnackbar } = useSnackbar();
 
   const [error, setError] = useState(null);
 
-  const getMovie = useCallback(async () => {
+  const getMovie = useCallback(async (server,isChanging) => {
     try {
-      if (!movie) {
-        const response = await axios.get(`/api/movie/${id}`);
+      if (!movie||isChanging) {
+        setLoading(true)
+        const response = await axios.get(`/api/movie/${id}`,{params:{server:server}});
 
         if (isMountedRef.current) {
           setMovie(response.data);
@@ -72,8 +77,8 @@ export default function BlogPost({ data }) {
   }, [isMountedRef]);
 
   useEffect(() => {
-    getMovie();
-  }, [getMovie]);
+    getMovie(streamingServer.server,streamingServer.isChanging);
+  }, [getMovie,streamingServer]);
 
   const structuredData = {
     "@context": "https://schema.org/",
@@ -112,7 +117,7 @@ export default function BlogPost({ data }) {
 
           {!loading && (
             <Card>
-              <VideoPostHero post={movie} />
+              <VideoPostHero post={movie} setStreamingServer={setStreamingServer} streamingServer={streamingServer}/>
 
               <Box sx={{ p: { xs: 3, md: 5 } }}>
                 <Stack flexWrap="wrap" direction="row" justifyContent="space-between">
@@ -199,7 +204,7 @@ export async function getServerSideProps(context) {
 
     videoResult.subtitles = sources.data.subtitle.map((s) => ({
       url: s.file?s.file:s,
-      lang: s.label ? s.label : 'Default',
+      lang: s.label ? s.label : s,
     }));
     movie.sources = videoResult.sources;
     movie.subtitles=videoResult.subtitles

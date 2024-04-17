@@ -2,7 +2,10 @@ import PropTypes from 'prop-types';
 // @mui
 import { alpha, keyframes, styled, useTheme } from '@mui/material/styles';
 import HoverMenu from 'material-ui-popup-state/HoverMenu';
+import FormControl from '@mui/material/FormControl';
+import InputLabel from '@mui/material/InputLabel';
 import { usePopupState, bindHover, bindMenu } from 'material-ui-popup-state/hooks';
+import Select from '@mui/material/Select';
 import {
   Box,
   SpeedDial,
@@ -40,6 +43,9 @@ import SpeedOutlinedIcon from '@mui/icons-material/SpeedOutlined';
 import HighQualityOutlinedIcon from '@mui/icons-material/HighQualityOutlined';
 import KeyboardArrowRightOutlinedIcon from '@mui/icons-material/KeyboardArrowRightOutlined';
 import PictureInPictureAltOutlinedIcon from '@mui/icons-material/PictureInPictureAltOutlined';
+import CastOutlinedIcon from '@mui/icons-material/CastOutlined';
+import CastConnectedOutlinedIcon from '@mui/icons-material/CastConnectedOutlined';
+
 import Tooltip from '@mui/material/Tooltip';
 import { useState, useContext, useEffect } from 'react';
 import moment from 'moment';
@@ -193,7 +199,7 @@ VideoPostHero.propTypes = {
   post: PropTypes.object.isRequired,
 };
 
-export default function VideoPostHero({ post }) {
+export default function VideoPostHero({ post,setStreamingServer,streamingServer }) {
   const theme = useTheme();
   const isDesktop = useResponsive('up', 'sm');
   const player = useRef(null);
@@ -207,6 +213,8 @@ export default function VideoPostHero({ post }) {
     waiting,
     volume,
     pictureInPicture,
+    canGoogleCast,
+    isGoogleCastConnected,
   } = useMediaStore(player);
   const remote = useMediaRemote(player);
   ///change slider
@@ -232,11 +240,20 @@ export default function VideoPostHero({ post }) {
       case 'fullscreen':
         fullscreen ? remote.exitFullscreen() : remote.enterFullscreen();
         break;
+      case 'cast':
+        !isGoogleCastConnected&&remote.requestGoogleCast();
+        break
     }
   };
   //settings menu
   const [anchorEl, setAnchorEl] = useState(null);
   const [anchorEl1, setAnchorEl1] = useState(null);
+  const handleChangeStreamingServer = (event) => {
+    setStreamingServer({
+      isChanging:true,
+      server:event.target.value,
+    });
+  };
 
   const open = Boolean(anchorEl);
   const openCc = Boolean(anchorEl1);
@@ -324,6 +341,12 @@ export default function VideoPostHero({ post }) {
           aspectRatio={'16/9'}
           crossorigin={true}
           className={'media'}
+          storage="youplex-player"
+          load={'eager'}
+          googleCast={{
+            autoJoinPolicy: 'origin_scoped',
+            language: 'en-US',
+          }}
         >
           <MediaProvider>
             {subtitles&&subtitles.map((subtitle,index)=>(
@@ -467,7 +490,20 @@ export default function VideoPostHero({ post }) {
                     </IconButton>
                   </Tooltip>
 
-                  <Tooltip title="settings">
+                  {/*cast starts here*/}
+                  <Tooltip title="Cast to device">
+                    <IconButton
+                      aria-label="Toggle Fullscreen"
+                      sx={{ color: '#F9FAFB' }}
+                      onClick={() => {
+                        handlePlayerControls('cast');
+                      }}
+                    >
+                      {isGoogleCastConnected ? <CastConnectedOutlinedIcon /> : <CastOutlinedIcon />}
+                    </IconButton>
+                  </Tooltip>
+
+                  <Tooltip title="Settings">
                     <IconButton
                       aria-label="settings"
                       aria-controls={open ? 'settings' : undefined}
@@ -536,7 +572,7 @@ export default function VideoPostHero({ post }) {
                   >
                     <MenuItem  key={'off'} onClick={(e) => handleChangeCc(-1)}>Off</MenuItem>
                     {subtitles&&subtitles.map((subtitle,index)=>(
-                    <MenuItem  key={index} onClick={(e) => handleChangeCc(index)}>{subtitle.lang}</MenuItem>
+                    <MenuItem  key={index} onClick={(e) => handleChangeCc(index)}>{subtitle.lang.split('/').pop().replace('.vtt','').replace(/[^a-zA-Z]/g,'')}</MenuItem>
                   ))}
                   </Menu>
                 </Stack>
@@ -607,6 +643,20 @@ export default function VideoPostHero({ post }) {
           ))}
         </SpeedDial>
       </FooterStyle>
+
+      <Box sx={{ display: 'flex', alignItems: 'center',mt:4,p:2 }}>
+        <FormControl fullWidth>
+          <InputLabel id="demo-simple-select-label">Server</InputLabel>
+      <Select
+        value={streamingServer.server}
+        label="Server"
+        onChange={handleChangeStreamingServer}
+      >
+        <MenuItem value={'UpCloud'}>upcloud</MenuItem>
+        <MenuItem value={'VidCloud'}>vidcloud</MenuItem>
+      </Select>
+        </FormControl>
+      </Box>
     </>
   );
 }

@@ -3,7 +3,7 @@ import axios from "@/utils/axios";
 
 export default async function handler(req, res) {
   try {
-    const { id } = await req.query;
+    const { id,server } = await req.query;
     const flixhq = new MOVIES.FlixHQ();
     const videoResult= {
       sources: [],
@@ -11,7 +11,7 @@ export default async function handler(req, res) {
     }
     const movie = await flixhq.fetchMovieInfo(`movie/${id}`);
     const servers=await flixhq.fetchEpisodeServers(`movie/${id}`,movie.episodes[0].id);
-    const i = servers.findIndex(s => s.name === 'UpCloud');
+    const i = servers.findIndex(s => s.name === server||'UpCloud');
     const { data } = await axios.get(`${process.env.BASE_URL}/ajax/sources/${servers[i].id}`);
     const videoUrl = new URL(data.link);
     const mid = videoUrl.href.split('/').pop()?.split('?')[0];
@@ -43,7 +43,7 @@ export default async function handler(req, res) {
 
     videoResult.subtitles = sources.data.subtitle.map((s) => ({
       url: s.file?s.file:s,
-      lang: s.label ? s.label : 'Default',
+      lang: s.label ? s.label : s,
     }));
     movie.sources = videoResult.sources;
     movie.subtitles=videoResult.subtitles
