@@ -343,6 +343,7 @@ export default function VideoPostHero({ post,setStreamingServer,streamingServer 
           className={'media'}
           storage="youplex-player"
           load={'eager'}
+          autoplay={true}
           googleCast={{
             autoJoinPolicy: 'origin_scoped',
             language: 'en-US',
