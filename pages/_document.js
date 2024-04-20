@@ -110,7 +110,7 @@ export default class MyDocument extends Document {
             gtag('config', 'G-PQEDR9JBYK');
             `}
           </Script>
-
+          {/*
           <Script
             data-cfasync="false"
             strategy="lazyOnload"
@@ -118,7 +118,7 @@ export default class MyDocument extends Document {
             src="//acacdn.com/script/atg.js"
             czid="mp5algb6n4"
           />
-          {/*
+
           <Script src="https://unpkg.com/magic-snowflakes/dist/snowflakes.min.js" strategy="afterInteractive" />
           <Script strategy="lazyOnload">
             {`
