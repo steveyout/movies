@@ -4,7 +4,7 @@ module.exports = {
     script: 'npm run start',
     watch: '.',
     instances:'max',
-    exec_mode:'cluster'
+    'exec_mode':'cluster'
   }],
 
   deploy : {
