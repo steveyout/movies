@@ -1,9 +1,10 @@
 module.exports = {
   apps : [{
     name:'flixhq',
-    script: 'npm run start',
+    script: 'node_modules/next/dist/bin/next',
     watch: '.',
     instances:'max',
+    args: "start -p 3030",
     exec_mode:'cluster'
   }],
 
