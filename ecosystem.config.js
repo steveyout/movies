@@ -3,7 +3,7 @@ module.exports = {
     name:'flixhq',
     script: './node_modules/.bin/next',
     watch: true,
-    args : "start -p 3030",
+    args : "start",
     instances:'max',
     'exec_mode':'cluster'
   }],
