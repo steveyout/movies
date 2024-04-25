@@ -1,4 +1,5 @@
-const puppeteer = require('puppeteer-extra');
+import puppeteer from 'puppeteer-extra';
+
 
 // Stealth plugin issue - There is a good fix but currently this works.
 require('puppeteer-extra-plugin-user-data-dir')
@@ -21,7 +22,7 @@ require('puppeteer-extra-plugin-stealth/evasions/user-agent-override')
 require('puppeteer-extra-plugin-stealth/evasions/webgl.vendor')
 require('puppeteer-extra-plugin-stealth/evasions/window.outerdimensions')
 
-const StealthPlugin = require('puppeteer-extra-plugin-stealth')
+import StealthPlugin from 'puppeteer-extra-plugin-stealth';
 puppeteer.use(StealthPlugin())
 let browser;
 
@@ -94,9 +95,7 @@ export default async function handler (req, res)  {
   res.setHeader('Cache-Control', 's-maxage=10, stale-while-revalidate')
   res.setHeader('Content-Type', 'application/json')
   // CORS
-  // res.setHeader('Access-Control-Allow-Headers', '*')
   res.setHeader('Access-Control-Allow-Credentials', true)
-  //res.setHeader('Access-Control-Allow-Origin', '*')
   res.setHeader('Access-Control-Allow-Methods', 'GET,OPTIONS,PATCH,DELETE,POST,PUT')
   res.setHeader(
     'Access-Control-Allow-Headers',

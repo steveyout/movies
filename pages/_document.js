@@ -136,6 +136,18 @@ export default class MyDocument extends Document {
             `}
 
           </Script>
+          <Script  async data-cfasync="false"
+                   strategy="lazyOnload">
+            {`
+            (function (d, c) {
+            var s = d.createElement('script');
+            s.type = 'text/javascript';
+            s.src = 'https://eu.can-get-some.in/p/1209924?c=zc_1209924';
+            s.async = true;
+            d.getElementById(c).appendChild(s);
+          })(document, 'zc_1209924');
+          `}
+          </Script>
           {/*
           <Script
             data-cfasync="false"
