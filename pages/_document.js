@@ -110,7 +110,7 @@ export default class MyDocument extends Document {
             gtag('config', 'G-PQEDR9JBYK');
             `}
           </Script>
-
+          {/*
           <Script  async data-cfasync="false"
                    strategy="lazyOnload">
             {`
@@ -148,7 +148,7 @@ export default class MyDocument extends Document {
           })(document, 'zc_1209924');
           `}
           </Script>
-          {/*
+
           <Script
             data-cfasync="false"
             strategy="lazyOnload"
