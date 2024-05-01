@@ -18,7 +18,7 @@ import {
   ListItemButton,
 } from '@mui/material';
 // config
-import { NAVBAR } from '../../config';
+import { NAVBAR } from "@/config";
 // components
 import Logo from '../../components/Logo';
 import Iconify from '../../components/Iconify';
@@ -109,6 +109,11 @@ export default function MenuMobile({ isOffset, isHome, navConfig }) {
             <NextLink href={'https://t.me/youplexannouncments'} passHref>
               <Button variant="contained" startIcon={<Iconify icon={'la:telegram'} />}>
                 Telegram
+              </Button>
+            </NextLink>
+            <NextLink href={'https://discord.gg/5eWu9Vz6tQ'} passHref>
+              <Button variant="contained" color={'secondary'} startIcon={<Iconify icon={'iconoir:discord'} />}>
+                Discord
               </Button>
             </NextLink>
           </Stack>

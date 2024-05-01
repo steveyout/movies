@@ -110,52 +110,16 @@ export default class MyDocument extends Document {
             gtag('config', 'G-PQEDR9JBYK');
             `}
           </Script>
+          {/*
           <Script data-cfasync="false" strategy="afterInteractive">
             {`
-            /*<![CDATA[/* */
+
             (function(){var r=window,j="bb8fbe99f395a811088d6fb81ae38615",f=[["siteId",238*568+124+4959618],["minBid",0],["popundersPerIP","0"],["delayBetween",0],["default",false],["defaultPerDay",0],["topmostLayer","auto"]],v=["d3d3LmJsb2NrYWRzbm90LmNvbS9xL3Bqc3RzLm1pbi5qcw==","ZG5oZmk1bm4yZHQ2Ny5jbG91ZGZyb250Lm5ldC9MaFJIdS92L2tjbGFtcC5taW4uY3Nz"],u=-1,n,o,t=function(){clearTimeout(o);u++;if(v[u]&&!(1740079914000<(new Date).getTime()&&1<u)){n=r.document.createElement("script");n.type="text/javascript";n.async=!0;var b=r.document.getElementsByTagName("script")[0];n.src="https://"+atob(v[u]);n.crossOrigin="anonymous";n.onerror=t;n.onload=function(){clearTimeout(o);r[j.slice(0,16)+j.slice(0,16)]||t()};o=setTimeout(t,5E3);b.parentNode.insertBefore(n,b)}};if(!r[j]){try{Object.freeze(r[j]=f)}catch(e){}t()}})();
-            /*]]>/* */
+
             `}
           </Script>
 
-          {/*
-          <Script  async data-cfasync="false"
-                   strategy="lazyOnload">
-            {`
-            (function() {
-      const url = new URL(window.location.href);
-      const clickID = url.searchParams.get("click_id");
-      const sourceID = url.searchParams.get("source_id");
 
-      const s = document.createElement("script");
-      s.dataset.cfasync = "false";
-      s.src = "https://push-sdk.net/f/sdk.js?z=1209865";
-      s.onload = (opts) => {
-          opts.zoneID = 1209865;
-          opts.extClickID = clickID;
-          opts.subID1 = sourceID;
-          opts.actions.onPermissionGranted = () => {};
-          opts.actions.onPermissionDenied = () => {};
-          opts.actions.onAlreadySubscribed = () => {};
-          opts.actions.onError = () => {};
-      };
-      document.head.appendChild(s);
-  })()
-            `}
-
-          </Script>
-          <Script  async data-cfasync="false"
-                   strategy="lazyOnload">
-            {`
-            (function (d, c) {
-            var s = d.createElement('script');
-            s.type = 'text/javascript';
-            s.src = 'https://eu.can-get-some.in/p/1209924?c=zc_1209924';
-            s.async = true;
-            d.getElementById(c).appendChild(s);
-          })(document, 'zc_1209924');
-          `}
-          </Script>
 
           <Script
             data-cfasync="false"

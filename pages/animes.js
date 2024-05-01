@@ -236,8 +236,8 @@ export default function Videos({ data }) {
 
 export async function getServerSideProps(context) {
   try {
-    const anime = new ANIME.AnimeSaturn();
-    const movies = await anime.search("one");
+    const anime =new ANIME.Gogoanime();
+    const movies = await anime.fetchAnimeList();
     return {
       props: {
         data: movies.results,

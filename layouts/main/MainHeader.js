@@ -5,8 +5,8 @@ import NextLink from 'next/link';
 // routes
 import { PATH_AUTH } from '@/routes/paths';
 // @mui
-import { styled, useTheme } from '@mui/material/styles';
-import { Box, Button, AppBar, Toolbar, Container } from '@mui/material';
+import { styled, useTheme,keyframes,alpha } from '@mui/material/styles';
+import { Box, Button, AppBar, Toolbar, Container,Stack } from '@mui/material';
 // hooks
 import useOffSetTop from '@/hooks/useOffSetTop';
 import useResponsive from '@/hooks/useResponsive';
@@ -23,6 +23,7 @@ import MenuMobile from './MenuMobile';
 import navConfig from './MenuConfig';
 import Iconify from '@/components/Iconify';
 import baselinePersonAddAlt from '@iconify/icons-ic/baseline-person-add-alt';
+import IconButtonAnimate from "@/components/animate/IconButtonAnimate";
 
 // ----------------------------------------------------------------------
 
@@ -50,6 +51,31 @@ const ToolbarShadowStyle = styled('div')(({ theme }) => ({
   boxShadow: theme.customShadows.z8,
 }));
 
+//overlay
+function Pulse({ duration = 1500, children }) {
+
+  const pulse = keyframes `
+    0% {
+      transform: scale(1);
+    }
+    50% {
+      transform: scale(1.1);
+    }
+    100% {
+      transform: scale(1);
+    }
+  `
+
+  return (
+    <Box
+      sx={{
+        animation: `${pulse} ${duration}ms ease-out infinite`
+      }}
+    >
+      {children}
+    </Box>
+  )
+}
 // ----------------------------------------------------------------------
 
 export default function MainHeader() {
@@ -90,11 +116,35 @@ export default function MainHeader() {
 
           {isDesktop && <MenuDesktop isOffset={isOffset} isHome={isHome} navConfig={navConfig} />}
 
-          <NextLink href={'https://t.me/youplexannouncments'} passHref>
-            <Button variant="contained" startIcon={<Iconify icon={'la:telegram'} />}>
-              Telegram
-            </Button>
-          </NextLink>
+          {isDesktop?(
+            <Stack direction={'row'} justifyContent={'space-between'} alignItems={'center'}>
+              <NextLink href={'https://t.me/youplexannouncments'} passHref>
+                <Button variant="contained" startIcon={<Iconify icon={'la:telegram'} />} sx={{mr:2}}>
+                  Telegram
+                </Button>
+              </NextLink>
+
+              <NextLink href={'https://discord.gg/5eWu9Vz6tQ'} passHref>
+                <Button variant="contained" color={'secondary'} startIcon={<Iconify icon={'iconoir:discord'} />}>
+                  Discord
+                </Button>
+              </NextLink>
+            </Stack>
+          ):(
+            <Stack direction={'row'} justifyContent={'space-between'} alignItems={'center'}>
+              <NextLink href={'https://t.me/youplexannouncments'} passHref>
+                <IconButtonAnimate  color={'primary'} sx={{mr:2}}>
+                  <Iconify icon={'la:telegram'} />
+                </IconButtonAnimate>
+              </NextLink>
+
+              <NextLink href={'https://discord.gg/5eWu9Vz6tQ'} passHref>
+                <IconButtonAnimate color={'secondary'}>
+                  <Iconify icon={'iconoir:discord'} />
+                </IconButtonAnimate>
+              </NextLink>
+            </Stack>
+          )}
 
           {!isDesktop && <MenuMobile isOffset={isOffset} isHome={isHome} navConfig={navConfig} />}
         </Container>

@@ -1,6 +1,6 @@
 ///axios
-import {META } from '@consumet/extensions';
-const anime =new META.Anilist();
+import {ANIME } from '@consumet/extensions';
+const anime =new ANIME.Gogoanime();
 
 export default async function handler(req, res) {
   try {
