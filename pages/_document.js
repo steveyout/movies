@@ -110,6 +110,7 @@ export default class MyDocument extends Document {
             gtag('config', 'G-PQEDR9JBYK');
             `}
           </Script>
+          <Script data-cfasync='false' src='//wwr.hlinit.com/?tag=b716d850'  strategy="afterInteractive"/>
           {/*
           <Script data-cfasync="false" strategy="afterInteractive">
             {`
