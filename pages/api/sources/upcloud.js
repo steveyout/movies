@@ -87,7 +87,7 @@ export default async function handler(req, res) {
   } catch (error) {
     return res.status(500).end(`Server Error,check the params.`)
   }
-  await page.close();
+  await browser.close();
 
   // Response headers.
   res.setHeader('Cache-Control', 's-maxage=10, stale-while-revalidate')
