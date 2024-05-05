@@ -24,7 +24,6 @@ require('puppeteer-extra-plugin-stealth/evasions/window.outerdimensions')
 
 import StealthPlugin from 'puppeteer-extra-plugin-stealth';
 puppeteer.use(StealthPlugin())
-let browser;
 
 export default async function handler (req, res)  {
   let {body,method} = req
@@ -49,7 +48,7 @@ export default async function handler (req, res)  {
 
 
   // create browser based on ENV
-  if(!browser) browser = await puppeteer.launch({
+  const browser = await puppeteer.launch({
     headless: true,
     ignoreHTTPSErrors: true,
     args: [
