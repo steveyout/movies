@@ -4,7 +4,7 @@ import { useEffect, useCallback, useState } from 'react';
 // next
 import NextLink from 'next/link';
 // @mui
-import { styled } from '@mui/material/styles';
+import { styled,keyframes } from '@mui/material/styles';
 import { Grid, Button, Container, Stack, Box, Alert, AlertTitle } from '@mui/material';
 // hooks
 import useSettings from '../hooks/useSettings';
@@ -66,6 +66,17 @@ const applySort = (posts, sortBy) => {
 };
 export default function Videos({ data }) {
   const { themeStretch } = useSettings();
+  const pulse = keyframes `
+    0% {
+      transform: scale(1);
+    }
+    50% {
+      transform: scale(1.1);
+    }
+    100% {
+      transform: scale(1);
+    }
+  `
 
   const isMountedRef = useIsMountedRef();
 
@@ -175,6 +186,18 @@ export default function Videos({ data }) {
                   Telegram
                 </a>{' '}
                 channel for more updates
+
+                <br/>
+                <Stack alignItems={'center'} justifyContent={'center'}>
+                <NextLink href={'https://streamwatch.online'} passHref>
+                  <Button variant="contained" color={'error'} startIcon={<Iconify icon={'icon-park-outline:play'} />} sx={{
+                    animation: `${pulse} ${1500}ms ease-out infinite`,
+                  }}>
+                    StreamWatch free movies (new)
+                  </Button>
+                </NextLink>
+                </Stack>
+
               </Alert>
             </m.div>
           </Stack>
@@ -230,6 +253,7 @@ export default function Videos({ data }) {
     </Page>
   );
 }
+
 
 export async function getServerSideProps(context) {
   try {
