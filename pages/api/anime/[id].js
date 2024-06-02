@@ -1,6 +1,6 @@
 ///axios
 import {ANIME } from '@consumet/extensions';
-const anime =new ANIME.Gogoanime();
+const anime =new ANIME.Zoro();
 
 export default async function handler(req, res) {
   try {

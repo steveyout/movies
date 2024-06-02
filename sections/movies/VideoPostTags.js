@@ -19,7 +19,7 @@ export default function VideoPostTags({ post,setMovie }) {
     const { query,pathname } = useRouter();
     const[active,setActive]=useState(0);
     const[loading,setLoading]=useState(false)
-  const { enqueueSnackbar } = useSnackbar();
+    const { enqueueSnackbar } = useSnackbar();
 
     const { id } = query;
     let { tags,episodes,type} = post;

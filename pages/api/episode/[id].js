@@ -2,7 +2,7 @@
 import { ANIME} from '@consumet/extensions';
 import {MOVIES} from 'wikiextensions-flix';
 import axios from "@/utils/axios";
-const anime =new ANIME.AnimeSaturn();
+const anime =new ANIME.Zoro();
 export default async function handler(req, res) {
   try {
     const { id,episode,type } = await req.query;

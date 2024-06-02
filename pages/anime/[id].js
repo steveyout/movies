@@ -153,9 +153,8 @@ export default function BlogPost({ data }) {
 export async function getServerSideProps(context) {
   try {
     const id = context.params.id;
-    const anime =new ANIME.Gogoanime();
+    const anime =new ANIME.Zoro();
     const movie = await anime.fetchAnimeInfo(id);
-    console.log(movie)
     const sources = await anime.fetchEpisodeSources(movie.episodes[0].id);
     movie.sources = sources.sources;
     movie.subtitles=sources.subtitles

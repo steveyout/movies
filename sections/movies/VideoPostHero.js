@@ -28,6 +28,7 @@ import { fDate } from '@/utils/formatTime';
 // components
 import Image from '@/components/Image';
 import Iconify from '@/components/Iconify';
+import { useRouter } from 'next/router';
 import { useRef } from 'react';
 import { MediaProvider, MediaPlayer, Time, useMediaStore, useMediaRemote,Track,Captions } from '@vidstack/react';
 
@@ -257,6 +258,7 @@ export default function VideoPostHero({ post,setStreamingServer,streamingServer 
 
   const open = Boolean(anchorEl);
   const openCc = Boolean(anchorEl1);
+  const { pathname } = useRouter();
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
   };
@@ -305,7 +307,7 @@ export default function VideoPostHero({ post,setStreamingServer,streamingServer 
     sources,
     subtitles
   } = post;
-  const stream = sources.find((source) => source.quality&&source.quality.includes('auto'))||sources[1];
+  const stream = sources.find((source) => source.quality&&source.quality.includes('auto'))||sources[0];
   function preventHorizontalKeyboardNavigation(event) {
     if (event.key === 'ArrowLeft' || event.key === 'ArrowRight') {
       event.preventDefault();
@@ -645,6 +647,7 @@ export default function VideoPostHero({ post,setStreamingServer,streamingServer 
         </SpeedDial>
       </FooterStyle>
 
+      {!pathname.includes('anime')&&(
       <Box sx={{ display: 'flex', alignItems: 'center',mt:4,p:2 }}>
         <FormControl fullWidth>
           <InputLabel id="demo-simple-select-label">Server</InputLabel>
@@ -657,7 +660,7 @@ export default function VideoPostHero({ post,setStreamingServer,streamingServer 
         <MenuItem value={'VidCloud'}>vidcloud</MenuItem>
       </Select>
         </FormControl>
-      </Box>
+      </Box>)}
     </>
   );
 }
