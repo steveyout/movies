@@ -22,7 +22,7 @@ import Markdown from '@/components/Markdown';
 import HeaderBreadcrumbs from '@/components/HeaderBreadcrumbs';
 import { SkeletonPost } from '@/components/skeleton';
 // sections
-import { VideoPostHero, VideoPostTags, VideoPostRecent } from '@/sections/movies';
+import { VideoPostHero, VideoPostTags, VideoPostRecent,VidstackPlayer } from '@/sections/movies';
 import Iconify from '@/components/Iconify';
 import { useSnackbar } from 'notistack';
 
@@ -118,7 +118,7 @@ export default function BlogPost({ data }) {
 
           {!loading && (
             <Card>
-              <VideoPostHero post={movie} setStreamingServer={setStreamingServer} streamingServer={streamingServer}/>
+              <VidstackPlayer post={movie} setStreamingServer={setStreamingServer} streamingServer={streamingServer}/>
 
               <Box sx={{ p: { xs: 3, md: 5 } }}>
                 <Stack flexWrap="wrap" direction="row" justifyContent="space-between">
@@ -206,6 +206,7 @@ export async function getServerSideProps(context) {
     videoResult.subtitles = sources.data.subtitle.map((s) => ({
       url: s.file?s.file:s,
       lang: s.label ? s.label : s,
+      default:!!(s.default && s.default === true)
     }));
     movie.sources = videoResult.sources;
     movie.subtitles=videoResult.subtitles

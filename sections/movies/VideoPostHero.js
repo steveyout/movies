@@ -345,7 +345,7 @@ export default function VideoPostHero({ post,setStreamingServer,streamingServer 
           className={'media'}
           storage="youplex-player"
           load={'eager'}
-          autoplay={true}
+          autoplay={false}
           googleCast={{
             autoJoinPolicy: 'origin_scoped',
             language: 'en-US',
@@ -353,7 +353,7 @@ export default function VideoPostHero({ post,setStreamingServer,streamingServer 
         >
           <MediaProvider>
             {subtitles&&subtitles.map((subtitle,index)=>(
-              <Track id={index} src={subtitle.url} kind="subtitles" label={subtitle.lang} lang="en-US" default={!!subtitle.lang.includes('English')} />
+              <Track id={index} src={subtitle.url} kind="subtitles" label={subtitle.lang} lang="en-US" default={subtitle.default} />
             ))}
           </MediaProvider>
           <Subtitles>

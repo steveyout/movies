@@ -60,8 +60,10 @@ import ThemeLocalization from '@/components/ThemeLocalization';
 import MotionLazyContainer from '@/components/animate/MotionLazyContainer';
 
 //vidstack
-import 'vidstack/styles/base.css';
-import '@/public/css/video.css';
+//import 'vidstack/styles/base.css';
+//import '@/public/css/video.css';
+import '@vidstack/react/player/styles/default/theme.css';
+import '@vidstack/react/player/styles/default/layouts/video.css';
 
 // ----------------------------------------------------------------------
 

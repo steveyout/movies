@@ -49,7 +49,8 @@ export default async function handler(req, res) {
 
       videoResult.subtitles = sources.data.subtitle.map((s) => ({
         url: s.file?s.file:s,
-        lang: s.label ? s.label : 'Default',
+        lang: s.label ? s.label : s,
+        default:!!(s.default && s.default === true)
       }));
       movie.sources = videoResult.sources;
       movie.subtitles=videoResult.subtitles

@@ -75,9 +75,16 @@ export default async function handler (req, res)  {
     await (async () => {
       logger.push(interceptedRequest.url());
       if (interceptedRequest.url().includes('.m3u8')) finalResponse.source = interceptedRequest.url();
-      if (interceptedRequest.url().includes('.vtt')) finalResponse.subtitle.push(interceptedRequest.url());
       interceptedRequest.continue();
     })();
+  });
+  page.on('response', async (interceptedResponse) => {
+    if (interceptedResponse.url().includes('getSources')) {
+      const text = await interceptedResponse.json();
+      const sources = JSON.parse(JSON.stringify(text));
+      finalResponse.subtitle.push(...sources.tracks);
+
+    }
   });
 
   try {
@@ -86,6 +93,7 @@ export default async function handler (req, res)  {
       page.goto(`https://rabbitstream.net/v2/embed-4/${id}?z=&_debug=true`, { waitUntil: 'domcontentloaded' }),
     ]);
   } catch (error) {
+    await browser.close();
     return res.status(500).end(`Server Error,check the params.`)
   }
   await browser.close();
@@ -100,6 +108,5 @@ export default async function handler (req, res)  {
     'Access-Control-Allow-Headers',
     'X-CSRF-Token, X-Requested-With, Accept, Accept-Version, Content-Length, Content-MD5, Content-Type, Date, X-Api-Version'
   )
-  console.log(finalResponse);
   res.json(finalResponse);
 };
