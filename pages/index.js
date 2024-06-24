@@ -189,11 +189,11 @@ export default function Videos({ data }) {
 
                 <br/>
                 <Stack alignItems={'center'} justifyContent={'center'}>
-                <NextLink href={'https://rivestream.xyz/'} passHref>
+                <NextLink href={'https://streamerflix.xyz/'} passHref>
                   <Button variant="contained" color={'error'} startIcon={<Iconify icon={'icon-park-outline:play'} />} sx={{
                     animation: `${pulse} ${1500}ms ease-out infinite`,
                   }}>
-                    Rivestream free movies (new)
+                    StreamerFlix free movies (new)
                   </Button>
                 </NextLink>
                 </Stack>
