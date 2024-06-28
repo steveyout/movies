@@ -7,20 +7,3 @@ Video{
     height: 100%;
     object-fit: cover;
 }
-/* Avoid double controls on iOS when in fullscreen. */
-.media[data-ios-controls] .media-controls,
-    /* Hide controls while media is loading, or user is idle. */
-.media:not([data-can-play]) .media-controls,
-.media:not([data-controls]) .media-controls {
-    opacity: 0;
-    pointer-events: none;
-}
-
-.media[data-controls] .media-controls {
-    opacity: 1;
-}
-
-/* Show controls if autoplay fails. */
-.media[data-autoplay-error] .media-controls {
-    opacity: 1;
-}

@@ -118,13 +118,13 @@ export default function MainHeader() {
 
           {isDesktop?(
             <Stack direction={'row'} justifyContent={'space-between'} alignItems={'center'}>
-              <NextLink href={'https://t.me/youplexannouncments'} passHref>
+              <NextLink href={'https://t.me/youplexannouncments'} passHref rel="noopener" target="_blank">
                 <Button variant="contained" startIcon={<Iconify icon={'la:telegram'} />} sx={{mr:2}}>
                   Telegram
                 </Button>
               </NextLink>
 
-              <NextLink href={'https://discord.gg/5eWu9Vz6tQ'} passHref>
+              <NextLink href={'https://discord.gg/5eWu9Vz6tQ'} passHref rel="noopener" target="_blank">
                 <Button variant="contained" color={'secondary'} startIcon={<Iconify icon={'iconoir:discord'} />}>
                   Discord
                 </Button>
@@ -132,13 +132,13 @@ export default function MainHeader() {
             </Stack>
           ):(
             <Stack direction={'row'} justifyContent={'space-between'} alignItems={'center'}>
-              <NextLink href={'https://t.me/youplexannouncments'} passHref>
-                <IconButtonAnimate  color={'primary'} sx={{mr:2}}>
-                  <Iconify icon={'la:telegram'} />
+              <NextLink href={'https://t.me/youplexannouncments'} passHref rel="noopener" target="_blank">
+                <IconButtonAnimate color={'secondary'} sx={{mr:2}}>
+                  <Iconify icon={'la:telegram'} sx={{color:'green'}}/>
                 </IconButtonAnimate>
               </NextLink>
 
-              <NextLink href={'https://discord.gg/5eWu9Vz6tQ'} passHref>
+              <NextLink href={'https://discord.gg/5eWu9Vz6tQ'} passHref rel="noopener" target="_blank">
                 <IconButtonAnimate color={'secondary'}>
                   <Iconify icon={'iconoir:discord'} />
                 </IconButtonAnimate>

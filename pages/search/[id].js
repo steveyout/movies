@@ -212,14 +212,18 @@ export default function Videos({ data }) {
                   )
                 )
               ) : !loading && videos.length === 0 ? (
-                <Box sx={{ maxWidth: 480, margin: 'auto', textAlign: 'center' }}>
+                <Grid item xs={12} sm={12} md={12}>
+                <Box sx={{ width:'100%', margin: 'auto', textAlign: 'center' }}>
                   <EmptyContent
                     title={'No results'}
                     img={'/images/empty.jpg'}
                     description={'Try again'}
                   />
-                  <SearchForm />
                 </Box>
+                <Box sx={{margin:2}}>
+                <SearchForm />
+                </Box>
+                </Grid>
               ) : (
                 videos.map((post, index) => (
                   <Grid key={post.id} item xs={12} sm={6} md={3}>

@@ -186,20 +186,27 @@ export default function Videos({ data }) {
                   Telegram
                 </a>{' '}
                 channel for more updates
-
-                <br/>
-                <Stack alignItems={'center'} justifyContent={'center'}>
-                <NextLink href={'https://streamerflix.xyz/'} passHref>
-                  <Button variant="contained" color={'error'} startIcon={<Iconify icon={'icon-park-outline:play'} />} sx={{
-                    animation: `${pulse} ${1500}ms ease-out infinite`,
-                  }}>
-                    StreamerFlix free movies (new)
-                  </Button>
-                </NextLink>
-                </Stack>
-
               </Alert>
             </m.div>
+          </Stack>
+
+          <Stack alignItems={'center'} justifyContent={'center'} mb={5}>
+            <NextLink href={'https://streamerflix.xyz/'} passHref>
+              <Button variant="contained" color={'warning'} startIcon={<Iconify icon={'icon-park-outline:play'} />} sx={{
+                animation: `${pulse} ${1500}ms ease-out infinite`,
+                mb:5
+              }}>
+                StreamerFlix free movies (new)
+              </Button>
+            </NextLink>
+
+            <NextLink href={'https://rivestream.xyz/'} passHref>
+              <Button variant="contained" color={'info'} startIcon={<Iconify icon={'icon-park-outline:play'} />} sx={{
+                animation: `${pulse} ${1500}ms ease-out infinite`,
+              }}>
+                Rivestream free movies (new)
+              </Button>
+            </NextLink>
           </Stack>
 
           <InfiniteScroll
