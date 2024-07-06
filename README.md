@@ -1,34 +1,43 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
-## Getting Started
+![Logo](https://i.ibb.co/0YyFYzK/play.png)
 
-First, run the development server:
+# Youplex
 
-```bash
-npm run dev
-# or
-yarn dev
-```
+Watch and stream movies,series and anime fo free
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-You can start editing the page by modifying `pages/[id].js`. The page auto-updates as you edit the file.
+## Features
 
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.js`.
+- Light/dark mode toggle
+- Fullscreen mode
+- Cross platform
+- multiple servers
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
 
-## Learn More
+## Demo
 
-To learn more about Next.js, take a look at the following resources:
+https://www.youplex.site/
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+## Screenshots
 
-## Deploy on Vercel
+![App Screenshot](https://i.ibb.co/VNw3pgL/Screenshot-4.png)
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+![App Screenshot](https://i.ibb.co/zmYM829/Screenshot-7.png)
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+![App Screenshot](https://i.ibb.co/kHV2SDS/Screenshot-8.png)
+
+![App Screenshot](https://i.ibb.co/gJjdgM8/Screenshot-10.png)
+
+
+## Authors
+
+- [@steveyout](https://www.github.com/steveyout)
+
+
+## 🔗 Links
+
+[![Telegram](https://img.shields.io/badge/Telegram-2CA5E0?style=for-the-badge&logo=telegram&logoColor=white)](https://t.me/youplexannouncments)
+
+[![Discord](https://img.shields.io/badge/Discord-5865F2?style=for-the-badge&logo=discord&logoColor=white)](https://discord.gg/5eWu9Vz6tQ)
+
