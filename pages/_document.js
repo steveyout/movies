@@ -110,9 +110,9 @@ export default class MyDocument extends Document {
             gtag('config', 'G-PQEDR9JBYK');
             `}
           </Script>
-          {/*
           <Script data-cfasync="false" strategy="afterInteractive" src='//pl23615274.highrevenuenetwork.com/06/41/dd/0641ddefaabf30c9e76bf1d5f78ba3da.js'></Script>
-          */}
+
+          {/*
           <Script data-cfasync="false" strategy="afterInteractive">
             {`
 
@@ -120,6 +120,7 @@ export default class MyDocument extends Document {
 
             `}
           </Script>
+          /*}
 
           {/*
           <Script src="https://unpkg.com/magic-snowflakes/dist/snowflakes.min.js" strategy="afterInteractive" />
