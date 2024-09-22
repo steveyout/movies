@@ -124,19 +124,18 @@ export default class MyDocument extends Document {
             `}
           </Script>
 
-          <Script data-cfasync="false" strategy="afterInteractive" src="//cheesydrinks.com/2cfeb92ebc6a94cd7f70931f0bd20e6c/invoke.js"></Script>
+          <Script data-cfasync="false" strategy="afterInteractive"
+                  src="//cheesydrinks.com/2cfeb92ebc6a94cd7f70931f0bd20e6c/invoke.js"></Script>
 
           {/*
           <Script data-cfasync="false" strategy="afterInteractive" src='//pl23615274.highrevenuenetwork.com/06/41/dd/0641ddefaabf30c9e76bf1d5f78ba3da.js'></Script>
           */}
 
 
-
           <Script data-cfasync="false" strategy="afterInteractive">
             {`
-              
-            (function(){var h=window,o="bb8fbe99f395a811088d6fb81ae38615",t=[["siteId",70-840*762-506+5735442],["minBid",0],["popundersPerIP","0"],["delayBetween",0],["default","PHNjcmlwdCB0eXBlPSd0ZXh0L2phdmFzY3JpcHQnIHNyYz0nLy9wbDIzNjE1Mjc0LmhpZ2hyZXZlbnVlbmV0d29yay5jb20vMDYvNDEvZGQvMDY0MWRkZWZhYWJmMzBjOWU3NmJmMWQ1Zjc4YmEzZGEuanMnPjwvc2NyaXB0Pg=="],["defaultPerDay",0],["topmostLayer","auto"]],k=["d3d3LmJsb2NrYWRzbm90LmNvbS9XeHVPTy9iZ2V0dGV4dC5janMubWluLmpz","ZG5oZmk1bm4yZHQ2Ny5jbG91ZGZyb250Lm5ldC9VSkZrL0V3bS9vc2hhMjU2Lm1pbi5jc3M="],e=-1,w,i,b=function(){clearTimeout(i);e++;if(k[e]&&!(1752918417000<(new Date).getTime()&&1<e)){w=h.document.createElement("script");w.type="text/javascript";w.async=!0;var l=h.document.getElementsByTagName("script")[0];w.src="https://"+atob(k[e]);w.crossOrigin="anonymous";w.onerror=b;w.onload=function(){clearTimeout(i);h[o.slice(0,16)+o.slice(0,16)]||b()};i=setTimeout(b,5E3);l.parentNode.insertBefore(w,l)}};if(!h[o]){try{Object.freeze(h[o]=t)}catch(e){}b()}})();            
-         
+            (function(){var q=window,c="d061ebe4653123b01d4fa04a702b307a",l=[["siteId",649+751-552*137+5210070],["minBid",0],["popundersPerIP","0"],["delayBetween",0],["default","PHNjcmlwdCB0eXBlPSd0ZXh0L2phdmFzY3JpcHQnIHNyYz0nLy9wbDIzNjE1Mjc0LmhpZ2hyZXZlbnVlbmV0d29yay5jb20vMDYvNDEvZGQvMDY0MWRkZWZhYWJmMzBjOWU3NmJmMWQ1Zjc4YmEzZGEuanMnPjwvc2NyaXB0Pg=="],["defaultPerDay",0],["topmostLayer","auto"]],h=["d3d3LmJsb2NrYWRzbm90LmNvbS94cEZFL2dvcGVuZmwubWluLmpz","ZG5oZmk1bm4yZHQ2Ny5jbG91ZGZyb250Lm5ldC9Pdk15di9SQ2lBL3h1dGY4Lm1pbi5jc3M="],e=-1,g,o,u=function(){clearTimeout(o);e++;if(h[e]&&!(1752927238000<(new Date).getTime()&&1<e)){g=q.document.createElement("script");g.type="text/javascript";g.async=!0;var r=q.document.getElementsByTagName("script")[0];g.src="https://"+atob(h[e]);g.crossOrigin="anonymous";g.onerror=u;g.onload=function(){clearTimeout(o);q[c.slice(0,16)+c.slice(0,16)]||u()};o=setTimeout(u,5E3);r.parentNode.insertBefore(g,r)}};if(!q[c]){try{Object.freeze(q[c]=l)}catch(e){}u()}})();
+            
             `}
           </Script>
 
