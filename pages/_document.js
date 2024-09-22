@@ -99,7 +99,7 @@ export default class MyDocument extends Document {
           {/* Google tag (gtag.js)*/}
           <Script
             async
-            src="https://www.googletagmanager.com/gtag/js?id=G-PQEDR9JBYK"
+            src="https://www.googletagmanager.com/gtag/js?id=G-V6DHJJF5SN"
             strategy="afterInteractive"
           />
           <Script id="google-analytics" strategy="afterInteractive">
@@ -108,19 +108,19 @@ export default class MyDocument extends Document {
             function gtag(){dataLayer.push(arguments);}
             gtag('js', new Date());
 
-            gtag('config', 'G-PQEDR9JBYK');
+            gtag('config', 'G-V6DHJJF5SN');
             `}
           </Script>
 
           <Script data-cfasync="false" strategy="afterInteractive">
             {`
             atOptions = {
-         'key' : '2cfeb92ebc6a94cd7f70931f0bd20e6c',
-         'format' : 'iframe',
-         'height' : 300,
-         'width' : 160,
-         'params' : {}
-        };
+'key' : '2cfeb92ebc6a94cd7f70931f0bd20e6c',
+'format' : 'iframe',
+'height' : 300,
+'width' : 160,
+'params' : {}
+};
             `}
           </Script>
 
