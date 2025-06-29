@@ -90,7 +90,7 @@ export default async function handler (req, res)  {
   try {
     const [req] = await Promise.all([
       page.waitForRequest(req => req.url().includes('.m3u8'), { timeout: 20000 }),
-      page.goto(`https://rabbitstream.net/v2/embed-4/${id}?z=&_debug=true`, { waitUntil: 'domcontentloaded' }),
+      page.goto(`https://cdnstreame.net/embed-1/v2/e-1/${id}?z=&_debug=true`, { waitUntil: 'domcontentloaded' }),
     ]);
   } catch (error) {
     await browser.close();
